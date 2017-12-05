@@ -1,0 +1,63 @@
+This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: report.aux
+The style file: alpha.bst
+Database file #1: report_bib.bib
+I was expecting a `,' or a `}'---line 15 of file report_bib.bib
+ :  
+ :  title = "Fast R-CNN",
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 21 of file report_bib.bib
+ :  
+ :  title = "Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks",
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Too many commas in name 1 of "Shaoqing Ren, Kaiming He, Ross Girshick, Jian Sun" for entry faster_rcnn
+while executing---line 1185 of file alpha.bst
+Too many commas in name 1 of "Shaoqing Ren, Kaiming He, Ross Girshick, Jian Sun" for entry faster_rcnn
+while executing---line 1185 of file alpha.bst
+Too many commas in name 1 of "Shaoqing Ren, Kaiming He, Ross Girshick, Jian Sun" for entry faster_rcnn
+while executing---line 1250 of file alpha.bst
+You've used 2 entries,
+            2543 wiz_defined-function locations,
+            562 strings with 4523 characters,
+and the built_in function-call counts, 506 in all, are:
+= -- 38
+> -- 16
+< -- 2
++ -- 4
+- -- 4
+* -- 22
+:= -- 84
+add.period$ -- 2
+call.type$ -- 2
+change.case$ -- 8
+chr.to.int$ -- 2
+cite$ -- 2
+duplicate$ -- 22
+empty$ -- 51
+format.name$ -- 7
+if$ -- 102
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 0
+newline$ -- 9
+num.names$ -- 6
+pop$ -- 21
+preamble$ -- 1
+purify$ -- 12
+quote$ -- 0
+skip$ -- 29
+stack$ -- 0
+substring$ -- 14
+swap$ -- 2
+text.length$ -- 2
+text.prefix$ -- 1
+top$ -- 0
+type$ -- 16
+warning$ -- 0
+while$ -- 4
+width$ -- 4
+write$ -- 16
+(There were 5 error messages)
