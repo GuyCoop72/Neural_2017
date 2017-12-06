@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: report.aux
+The style file: alpha.bst
+Database file #1: report_bib.bib
+Warning--empty journal in fast_rcnn
+Warning--empty journal in faster_rcnn
+You've used 2 entries,
+            2543 wiz_defined-function locations,
+            565 strings with 4624 characters,
+and the built_in function-call counts, 688 in all, are:
+= -- 62
+> -- 39
+< -- 1
++ -- 14
+- -- 14
+* -- 45
+:= -- 130
+add.period$ -- 6
+call.type$ -- 2
+change.case$ -- 13
+chr.to.int$ -- 2
+cite$ -- 4
+duplicate$ -- 27
+empty$ -- 41
+format.name$ -- 17
+if$ -- 127
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 2
+newline$ -- 13
+num.names$ -- 6
+pop$ -- 16
+preamble$ -- 1
+purify$ -- 15
+quote$ -- 0
+skip$ -- 24
+stack$ -- 0
+substring$ -- 14
+swap$ -- 0
+text.length$ -- 1
+text.prefix$ -- 1
+top$ -- 0
+type$ -- 16
+warning$ -- 2
+while$ -- 5
+width$ -- 3
+write$ -- 24
+(There were 2 warnings)

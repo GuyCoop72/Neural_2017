@@ -1,0 +1,14 @@
+\begin{thebibliography}{RHGS15}
+
+\bibitem[Gir15]{fast_rcnn}
+Ross Girshick.
+\newblock Fast r-cnn.
+\newblock 2015.
+
+\bibitem[RHGS15]{faster_rcnn}
+Shaoqing Ren, Kaiming He, Ross Girshick, and Jian Sun.
+\newblock Faster r-cnn: Towards real-time object detection with region proposal
+  networks.
+\newblock 2015.
+
+\end{thebibliography}
