@@ -1,8 +1,11 @@
 # note, check if co_ordinates start at 0,0 or 1,1 and fix get_pixel_list method in generate_output_file
 # note, if bounding box overlap is possible, then add compression to pixel_list santization function
-import matplotlib.pylab as plt
 import os
 import numpy as np
+import skimage.io as skio
+import skimage.transform as transform
+import skimage.util as skut
+import matplotlib.pyplot as plt
 
 class data_handler:
     image_size = [400, 400]
@@ -95,21 +98,22 @@ class data_handler:
                 return bounding_boxes
             pixel_loc_corners.append([pixel_list[0][0], pixel_list[0][0], pixel_list[0][1]])
             for pair in pixel_list[1:]:
+                break_var = 0
                 for ind, objs_found in enumerate(pixel_loc_corners):
                     if objs_found[1] + data_handler.image_size[1] == pair[0]:
                         # not a new object
                         pixel_loc_corners[ind][1] = pair[0]
-                    else:
-                        # found a new object
-                        pixel_loc_corners.append([pair[0], pair[0], pair[1]])
+                        break_var = 1
+                        break
+                if break_var == 0:
+                    pixel_loc_corners.append([pair[0], pair[0], pair[1]])
+
             # finished building pixel_loc_corners
             for corner in pixel_loc_corners:
                 x1 = ((corner[0]) % data_handler.image_size[0]) + 1
                 y1 = int(corner[0] / data_handler.image_size[1])
                 x2 = ((corner[1] + corner[2] - 1) % data_handler.image_size[0]) + 1
                 y2 = int((corner[1] + corner[2]) / data_handler.image_size[1])
-
-                print(corner[1])
                 bboxes.append([[x1, y1],[x2, y2]])
 
             return bboxes
@@ -129,13 +133,13 @@ class data_handler:
         return bounding_boxes
 
     @staticmethod
-    def get_sub_image(image_array, pixel_list):
-        # gets a flattened sub_image from a full image and a list of pixels.
-        output_array = []
-        for pair in pixel_list:
-            for i in range(pair[0], pair[0] + pair[1]):
-                output_array.append(image_array[i])
-        return output_array
+    def get_sub_image(bounding_box, main_image):
+        x1 = bounding_box[0][0]
+        y1 = bounding_box[0][1]
+        x2 = bounding_box[1][0]
+        y2 = bounding_box[1][1]
+        region = np.array(main_image)[y1:y2, x1:x2]
+
 
     @staticmethod
     def image_read(file_name):
@@ -144,7 +148,3 @@ class data_handler:
         output_array = np.reshape()
 
 
-# test for generate_output_file method
-# generates an empty bounding box dictionary then attempts to print the output file
-bboxes = data_handler.get_bounding_boxes(open("../../NC_data/train/2009_002053.txt"))
-print(bboxes["cat"])
