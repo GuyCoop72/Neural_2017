@@ -163,7 +163,23 @@ class data_handler:
         outfile.close()
         return output_string
 
+    @staticmethod
+    def build_training_array_single(bounding_boxes, image):
+    # builds two arrays from a single image and label combination:
+    # -data contatining a list of flattened sub images
+    # -labels contatining the corresponding labels for those images
+        labels = []
+        data = []
+        for obj in data_handler.object_list:
+            if bounding_boxes[obj] != bounding_boxes:
+                for bbox in bounding_boxes[obj]:
+                    labels.append(obj)
+                    data.append( get_sub_image(image, bbox) )
+        return [labels, data]
+
+
+
 # test for generate_output_file method
 # generates an empty bounding box dictionary then attempts to print the output file
-bboxes = data_handler.get_bounding_boxes(open("/home/guy/Documents/Neural/Data/train/2007_000042.txt"))
-print(data_handler.get_yolo_text_files("/home/guy/Documents/Neural/Data/train/2007_000042.txt"))
+
+print(data_handler.get_yolo_text_files("/home/guy/Documents/Neural/Data/train/2007_000042.txt", "/home/guy/Documents/Neural/Data/temp.txt"))
