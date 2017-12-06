@@ -95,21 +95,25 @@ class data_handler:
                 return bounding_boxes
             pixel_loc_corners.append([pixel_list[0][0], pixel_list[0][0], pixel_list[0][1]])
             for pair in pixel_list[1:]:
+                break_var = 0
                 for ind, objs_found in enumerate(pixel_loc_corners):
+                    print pair[0]
+                    print pixel_loc_corners[0]
                     if objs_found[1] + data_handler.image_size[1] == pair[0]:
                         # not a new object
                         pixel_loc_corners[ind][1] = pair[0]
-                    else:
-                        # found a new object
-                        pixel_loc_corners.append([pair[0], pair[0], pair[1]])
+                        break_var = 1
+                        break
+                if break_var == 0:
+                    print("found new obj")
+                    pixel_loc_corners.append([pair[0], pair[0], pair[1]])
+
             # finished building pixel_loc_corners
             for corner in pixel_loc_corners:
                 x1 = ((corner[0]) % data_handler.image_size[0]) + 1
                 y1 = int(corner[0] / data_handler.image_size[1])
                 x2 = ((corner[1] + corner[2] - 1) % data_handler.image_size[0]) + 1
                 y2 = int((corner[1] + corner[2]) / data_handler.image_size[1])
-
-                print(corner[1])
                 bboxes.append([[x1, y1],[x2, y2]])
 
             return bboxes
@@ -146,5 +150,5 @@ class data_handler:
 
 # test for generate_output_file method
 # generates an empty bounding box dictionary then attempts to print the output file
-bboxes = data_handler.get_bounding_boxes(open("/home/guy/Documents/Neural/Data/train/2009_002053.txt"))
-print(bboxes["cat"])
+bboxes = data_handler.get_bounding_boxes(open("/home/guy/Documents/Neural/Data/train/2007_000042.txt"))
+print(bboxes["train"])
