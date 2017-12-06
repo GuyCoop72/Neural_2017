@@ -139,6 +139,7 @@ class data_handler:
         x2 = bounding_box[1][0]
         y2 = bounding_box[1][1]
         region = np.array(main_image)[y1:y2, x1:x2]
+        return region
 
 
     @staticmethod
@@ -147,4 +148,35 @@ class data_handler:
         plt.imread(file_name)
         output_array = np.reshape()
 
+    @staticmethod
+    def get_yolo_text_files(input_file_location, output_file_location):
+        output_string = ""
+        f = open(input_file_location)
+        bboxes = data_handler.get_bounding_boxes(f)
+        for ind, obj in enumerate(data_handler.object_list):
+            if bboxes[obj] != bboxes:
+                for bbox in bboxes[obj]:
+                    output_string += (str(ind) + " " \
+                                     + str(float(bbox[0][0]) / 400. ) + " " \
+                                     + str(float(bbox[0][1]) / 400.) + " " \
+                                     + str(float(bbox[1][0] - bbox[0][0]) / 400.) + " " \
+                                     + str(float(bbox[1][1] - bbox[0][1]) / 400.) + '\n')
 
+        outfile = open(output_file_location, 'w')
+        outfile.write(output_string)
+        outfile.close()
+        return output_string
+
+    @staticmethod
+    def build_training_array_single(bounding_boxes, image):
+        # builds two arrays from a single image and label combination:
+        # -data contatining a list of flattened sub images
+        # -labels contatining the corresponding labels for those images
+        labels = []
+        data = []
+        for obj in data_handler.object_list:
+            if bounding_boxes[obj] != bounding_boxes:
+                for bbox in bounding_boxes[obj]:
+                    labels.append(obj)
+                    data.append(data_handler.get_sub_image(bbox, image))
+        return [labels, data]
