@@ -97,15 +97,12 @@ class data_handler:
             for pair in pixel_list[1:]:
                 break_var = 0
                 for ind, objs_found in enumerate(pixel_loc_corners):
-                    print pair[0]
-                    print pixel_loc_corners[0]
                     if objs_found[1] + data_handler.image_size[1] == pair[0]:
                         # not a new object
                         pixel_loc_corners[ind][1] = pair[0]
                         break_var = 1
                         break
                 if break_var == 0:
-                    print("found new obj")
                     pixel_loc_corners.append([pair[0], pair[0], pair[1]])
 
             # finished building pixel_loc_corners
@@ -147,8 +144,26 @@ class data_handler:
         plt.imread(file_name)
         output_array = np.reshape()
 
+    @staticmethod
+    def get_yolo_text_files(input_file_location, output_file_location):
+        output_string = ""
+        f = open(input_file_location)
+        bboxes = data_handler.get_bounding_boxes(f)
+        for obj in data_handler.object_list:
+            if bboxes[obj] != bboxes:
+                for bbox in bboxes[obj]:
+                    output_string += (obj + " " \
+                                     + str(bbox[0][0]) + " " \
+                                     + str(bbox[0][1]) + " " \
+                                     + str(bbox[1][0] - bbox[0][0]) + " " \
+                                     + str(bbox[1][1] - bbox[0][1]) + '\n')
+
+        outfile = open(output_file_location, 'w')
+        outfile.write(output_string)
+        outfile.close()
+        return output_string
 
 # test for generate_output_file method
 # generates an empty bounding box dictionary then attempts to print the output file
 bboxes = data_handler.get_bounding_boxes(open("/home/guy/Documents/Neural/Data/train/2007_000042.txt"))
-print(bboxes["train"])
+print(data_handler.get_yolo_text_files("/home/guy/Documents/Neural/Data/train/2007_000042.txt"))
