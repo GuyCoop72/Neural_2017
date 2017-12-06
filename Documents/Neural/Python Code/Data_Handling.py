@@ -4,11 +4,11 @@ import os
 import numpy as np
 import skimage.io as skio
 import skimage.transform as transform
-import skimage.util as skut
 import matplotlib.pyplot as plt
 
 class data_handler:
     image_size = [400, 400]
+    file_path = "../../NC_data/{}"
 
     object_list = [
         "aeroplane",
@@ -139,14 +139,7 @@ class data_handler:
         x2 = bounding_box[1][0]
         y2 = bounding_box[1][1]
         region = np.array(main_image)[y1:y2, x1:x2]
-        return region
-
-
-    @staticmethod
-    def image_read(file_name):
-        # reads a jpg file into a [x * y, 3] array containing rgb values
-        plt.imread(file_name)
-        output_array = np.reshape()
+        return transform.resize(region, (120, 120))
 
     @staticmethod
     def get_yolo_text_files(input_file_location, output_file_location):
@@ -179,4 +172,19 @@ class data_handler:
                 for bbox in bounding_boxes[obj]:
                     labels.append(obj)
                     data.append(data_handler.get_sub_image(bbox, image))
-        return [labels, data]
+        return labels, data
+
+    @staticmethod
+    def get_training_data():
+        labels = []
+        data = []
+        for f in os.listdir(data_handler.file_path.format('train'))[:100]:
+            if f.count('.txt'):
+                bboxes = data_handler.get_bounding_boxes(open(data_handler.file_path.format('train') + '/' + f))
+                img = data_handler.file_path.format('train') + '/' + f.replace('.txt', '') + '.jpg'
+                label, datum = data_handler.build_training_array_single(bboxes, skio.imread(img))
+                labels.extend(label)
+                data.extend(datum)
+        return data, labels
+
+
