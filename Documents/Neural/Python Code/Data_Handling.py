@@ -146,5 +146,5 @@ class data_handler:
 
 # test for generate_output_file method
 # generates an empty bounding box dictionary then attempts to print the output file
-bboxes = data_handler.get_bounding_boxes(open("/home/guy/Documents/Neural/Data/train/2009_002053.txt"))
+bboxes = data_handler.get_bounding_boxes(open("../../NC_data/train/2009_002053.txt"))
 print(bboxes["cat"])
