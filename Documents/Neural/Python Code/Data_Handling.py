@@ -149,14 +149,14 @@ class data_handler:
         output_string = ""
         f = open(input_file_location)
         bboxes = data_handler.get_bounding_boxes(f)
-        for obj in data_handler.object_list:
+        for ind, obj in enumerate(data_handler.object_list):
             if bboxes[obj] != bboxes:
                 for bbox in bboxes[obj]:
-                    output_string += (obj + " " \
-                                     + str(bbox[0][0]) + " " \
-                                     + str(bbox[0][1]) + " " \
-                                     + str(bbox[1][0] - bbox[0][0]) + " " \
-                                     + str(bbox[1][1] - bbox[0][1]) + '\n')
+                    output_string += (str(ind) + " " \
+                                     + str(float(bbox[0][0]) / 400. ) + " " \
+                                     + str(float(bbox[0][1]) / 400.) + " " \
+                                     + str(float(bbox[1][0] - bbox[0][0]) / 400.) + " " \
+                                     + str(float(bbox[1][1] - bbox[0][1]) / 400.) + '\n')
 
         outfile = open(output_file_location, 'w')
         outfile.write(output_string)
