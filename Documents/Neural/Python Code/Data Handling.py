@@ -68,7 +68,7 @@ class data_handler:
         for obj in data_handler.object_list:
             output_string = output_string + filename + "_" + obj + ","
             pixel_list = get_full_pixel_list(bounding_boxes[obj])
-            output_string += str_pixel_list()
+            output_string += str_pixel_list(pixel_list)
             output_string += '\n'
 
         return output_string
@@ -78,7 +78,20 @@ class data_handler:
         # from an input pixel list file, generate a dictionary of bounding boxes
         bounding_boxes = {}
         for obj in data_handler.object_list:
-            bounding_boxes[obj] = "1"
+            bounding_boxes[obj] = []
 
         return bounding_boxes
 
+    @staticmethod
+    def get_sub_image(image_array, pixel_list):
+        # gets a flattened sub_image from a full image and a list of pixels.
+        output_array = []
+        for pair in pixel_list:
+            for i in range(pair[0], pair[0] + pair[1]):
+                output_array.append(image_array[i])
+        return output_array
+
+# test for generate_output_file method
+# generates an empty bounding box dictionary then attempts to print the output file
+bboxes = data_handler.get_bounding_boxes()
+print(data_handler.generate_output_file(bboxes, "img_000.jpg"))
