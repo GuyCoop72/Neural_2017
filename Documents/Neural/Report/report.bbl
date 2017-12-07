@@ -1,4 +1,4 @@
-\begin{thebibliography}{RHGS15}
+\begin{thebibliography}{RDGF15}
 
 \bibitem[Gir15]{fast_rcnn}
 Ross Girshick.
@@ -9,7 +9,12 @@ Ross Girshick.
 Google.
 \newblock Tensorflow 1.0, 2017.
 
-\bibitem[RF16]{yolo}
+\bibitem[RDGF15]{yolo_v1}
+Joseph Redmon, Santosh Divvala, Ross Girshick, and Ali Farhadi.
+\newblock You only look once: Unified, real-time object detection.
+\newblock {\em arXiv:1506.02640}, 2015.
+
+\bibitem[RF16]{yolo_v2}
 Joseph Redmon and Ali Farhadi.
 \newblock Yolo9000: Better, faster, stronger.
 \newblock {\em arXiv preprint arXiv:1612.08242}, 2016.
