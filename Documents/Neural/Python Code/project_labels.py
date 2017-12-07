@@ -1,5 +1,5 @@
 import os
-import Data_Handling
+from Data_Handling import data_handler as dh
 
 #########Generate txt files###########
 with open ('train.txt', 'w') as f:
@@ -42,8 +42,8 @@ with open ('test.txt', 'w') as f_test:
 ##########Generate Labels##########
 for file in os.listdir("./train"):
     if file.endswith(".txt"):
-        k = Data_Handling.data_handler()
-        k.get_yolo_text_files(file, file)
+        file_path = os.path.abspath(file)
+        dh.get_yolo_text_files(file_path + file, file_path + file)
 
 
 
