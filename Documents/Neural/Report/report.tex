@@ -31,10 +31,10 @@ The data set provided was given in the following format:
 	\item Labels: each image has a corresponding text file that describes the location of each of the predefined objects in the image. This location was given as pairs of integers describing horizontal runs of pixels that form a rectangular bounding box around the object. If the object was not present in the image it was given as [object 1 0] meaning that it had a run length of 0 pixels.
 \end{itemize}
 \paragraph{Training Set}
-The training set contained n (image, label) pairs 
+The training set provided contains 14,625 (image, label) pairs that includes image files and label files that describe the objects and bouding boxes. for conducting experiments, this data set should be subdivided into a Training set and a Validation set to measure how parameter changes affect the accuracy of the results
 
 \paragraph{Test Set}
-The test set contained m (image, label) pairs
+The test set contained 2500 images that are given to simulate unseen data coming into the system. These images do not have the associated label files, and our task is to produce label files that describe the location and class of objects in each of the test image files.
 
 \subsection{Our Aims}
 Our aims for this project are as follows:
@@ -46,51 +46,71 @@ Our aims for this project are as follows:
 \end {itemize}
 
 \section{Design}
---Options available to us:\\
-	- RCNN, Fast, Faster\\
-	- Yolo\\
-	- Selective Search\\
-	- general backprop\\
+For this task our Initial instict was to attempt to solve it with a simple feedforward neural network. And whilst this would have been adequate for a simple classification task, we determined it would not provide a good solution to this region bounded classification task. From there we exaimned other possible methods of solving the task. The first sub-method we investigated was using Selective Search to identify regions of interest inside the image. We then expanded this to determine other pre-established algorithms that make use of selective search and how they compare to other similar algorithms.
+
+\subsection{Selective Search}
+Selective Search is an algorithm used for regional image searching....
 	
 \subsection{Regional Convolutional Neural Networks (RCNNs)}
-	Given the regional nature of this task, The first option that should be analysed is "Regional Convultional Neural Networks" and their successors. There are three implementations of this algorithm that will be examined:
+	Given the regional nature of this task, The first option that should be analyzed is "Regional Convultional Neural Networks" and their successors. This strategy of focusing  There are three implementations of this algorithm that will be examined:
 	\begin{itemize}
-		\item R-CNN
+		\item R-CNN \cite{rcnn}
 		\item Fast R-CNN \cite{fast_rcnn}
 		\item Faster R-CNN \cite{faster_rcnn}
 	\end{itemize}
 	
 \paragraph{R-CNN}
-R-CNN works by.....
+R-CNN \cite{rcnn} makes use of selective search to generate the region proposals. it typically produces around 2000 region proposals per image, these regions are then sent forward to the CNN in order to determine if they contain an object in the dataset, and what that object is. Once the objects have been detected in the bounding boxes, regression algorithms are used to tighten the bounding boxes more accurately around the objects.
 
 \paragraph{Fast R-CNN}
-Fast R-CNN \cite{fast_rcnn} is an update on the original R-CNN technique that was developed in 2015, it acheives approximately a 10x speed-up on the original. It does this by....
+Fast R-CNN \cite{fast_rcnn} is an update on the original R-CNN technique that was developed in 2015, it acheives approximately a 9x speed-up on the original at train time, and over 200x speed-up at test time. It does this by unifying the training phase of the boudinding boxes, and the object classification algorithm into a single round of training, rather than having to train the two algorithms seperately. \\
+It also makes use of Region-of-Interest (RoI) pooling layers. "RoI max pooling works by reducing the $h*w$ RoI window into an $H*W$ grid of sub-windows of approximate size $h/H * w/W$ and then max-pooling the values in each sub-window into the corresponding output grid cell."\cite{fast_rcnn}
 
 \paragraph{Faster R-CNN}
-Faster R-CNN \cite{faster_rcnn} is another significat update on the Fast R-CNN technique that acheives another dramatic speedup. This algorithm was designed as part of an attempt at real time regional image recognition, and as such is able to operate in almost real time.
+Faster R-CNN \cite{faster_rcnn} is another significat update on the Fast R-CNN technique that acheives another dramatic speedup. This algorithm was designed as part of an attempt at real time regional image recognition, and as such is able to operate in almost real time. \\
+Similar to Fast R-CNN it makes use of the RoI pooling layer to create a significant imporvement in performance over traditional R-CNN. Faster R-CNN also introduces a Region Proposal Network (RPN). The RPN shares convolutional features with the detection network. This allows it to provide almost "cost-free" region proposals to the system. \\
+Fast R-CNN is recorded to be able to operate at approximately 5 frames-per-second (fps) when running on a GPU, meaning that it could be used for real time applications.
 	
 
 \subsection{"You Only Look Once" (YOLO)}
-"You Only Look Once" (YOLO) was named as such because the theory centers around only performing a single pass across the image, rather than having to analyse the same data multiple times.
-
-\subsection{Selective Search}
-Selective Search is an algorithm used for regional image searching....
+"You Only Look Once" (YOLO) was named as such because the algorithm centers around only performing a single pass across the image, rather than having to analyse the same data multiple times.
 	
 
 \section{Implementation}
---Using RCNN
---TensorFlow Layers
+A first attempt resembled the original R-CNN algorithm outlined in (CITE RCNN). This was chosen from the initial intuition that by training a CNN with 3 convolutional layers and 2 fully connected layers, we could achieve good accuracy for the classification component of the problem on simple image sets such as MNIST. This CNN was implemented using the layers module in TensorFlow \cite{tensorflow}. We felt perhaps decent accuracy could be obtained by using this trained CNN on multiple proposed regions, then giving these regions a 'score' based on how confident the classification was, and taking the best scoring region among largely intersecting regions as the output region. This is essentially the R-CNN algorithm. We decided to use the same region proposal algorithm, SelectionSearch, as the original authors, but with different parameters to reduce region proposals and favor larger bounding boxes. Finding which parameters favored these preferences was one source of experimentation throughout the project. In addition, we found simply removing region proposals with certain extreme aspect ratios was a reasonable assumption for this data set.
+
+These regions, along with the regions provided in the training text files, were converted to $120\times 120$ arrays of rgb tuples using Skimage (SciKit Image processing library \cite{skimage}) and numpy reshaping tools, which could then be used to train the CNN.
+
+In the interest of time and sanity, this implementation was largely discarded in favor of the more ready-to-use implementation of YOLO from Darknet. In order to comply with the requirement to implement code in Python, we made use of a Python wrapper provided by Darknet. To use this, we wrote a script which loaded a trained network with provided weights and made predictions for each image in the test set, appending the predictions in the proper format to a \texttt{submission.txt} file, used to submit our predictions.
+--YOLO\_v1\cite{yolo_v1}\\
+--using YOLO\cite{yolo_v2}\\
+--Darknet\\
 
 \section{Experiments}
 
 \section{Conclusion}
 
 \section{Description of Collaboration}
-Everyone did good work.
-brendan and bill - RCNN
-Priyanka Liangye - YOLO
+An overview of each member's contribution to the project is given below:
+\paragraph{Brendan Case:}
+did something
 
+\paragraph{Guy Coop:}
+\begin{itemize}
+	\item Produced data\_handler python class used by multiple systems to reformat the training data into the required input format for the neural network. And reformat the output from the network back into a format that matches the input.
+	\item Lead the writing of the report, and collated it into a \LaTeX document.
+\end{itemize}
 
+\paragraph{Vasileios Mizaridis:}
+did something
+
+\paragraph{Priyanka Mohata:}
+did something
+
+\paragraph{Liangye Yu:}
+did something
+
+\newpage
 \bibliography{report_bib}
 \bibliographystyle{alpha}
 \end{document}
