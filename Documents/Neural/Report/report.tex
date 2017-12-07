@@ -34,7 +34,7 @@ The data set provided was given in the following format:
 The training set provided contains 14,625 (image, label) pairs that includes image files and label files that describe the objects and bouding boxes. for conducting experiments, this data set should be subdivided into a Training set and a Validation set to measure how parameter changes affect the accuracy of the results
 
 \paragraph{Test Set}
-The test set contained m images that are given to simulate unseen data coming into the system. These images do not have the associated label files, and our task is to produce label files that describe the location and class of objects in each of the test image files.
+The test set contained 2500 images that are given to simulate unseen data coming into the system. These images do not have the associated label files, and our task is to produce label files that describe the location and class of objects in each of the test image files.
 
 \subsection{Our Aims}
 Our aims for this project are as follows:
@@ -63,10 +63,12 @@ Selective Search is an algorithm used for regional image searching....
 R-CNN works by.....
 
 \paragraph{Fast R-CNN}
-Fast R-CNN \cite{fast_rcnn} is an update on the original R-CNN technique that was developed in 2015, it acheives approximately a 10x speed-up on the original. It does this by....
+Fast R-CNN \cite{fast_rcnn} is an update on the original R-CNN technique that was developed in 2015, it acheives approximately a 9x speed-up on the original at train time, and over 200x speed-up at test time. It does this by unifying the training phase of the boudinding boxes, and the object classification algorithm into a single round of training, rather than having to train the two algorithms seperately. \\
+It also makes use of Region-of-Interest (RoI) pooling layers. "RoI max pooling works by reducing the $h*w$ RoI window into an $H*W$ grid of sub-windows of approximate size $h/H * w/W$ and then max-pooling the values in each sub-window into the corresponding output grid cell."\cite{fast_rcnn}
 
 \paragraph{Faster R-CNN}
-Faster R-CNN \cite{faster_rcnn} is another significat update on the Fast R-CNN technique that acheives another dramatic speedup. This algorithm was designed as part of an attempt at real time regional image recognition, and as such is able to operate in almost real time.
+Faster R-CNN \cite{faster_rcnn} is another significat update on the Fast R-CNN technique that acheives another dramatic speedup. This algorithm was designed as part of an attempt at real time regional image recognition, and as such is able to operate in almost real time. \\
+Similar to Fast R-CNN it makes use of the RoI pooling layer to create a significant imporvement in performance over traditional R-CNN
 	
 
 \subsection{"You Only Look Once" (YOLO)}
@@ -105,7 +107,7 @@ did something
 \paragraph{Liangye Yu:}
 did something
 
-
+\newpage
 \bibliography{report_bib}
 \bibliographystyle{alpha}
 \end{document}
