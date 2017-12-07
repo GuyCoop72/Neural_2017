@@ -15,7 +15,7 @@
 \contentsline {section}{\numberline {5}Conclusion}{5}
 \contentsline {section}{\numberline {6}Description of Collaboration}{5}
 \contentsline {paragraph}{Brendan Case:}{5}
-\contentsline {paragraph}{Guy Coop:}{5}
+\contentsline {paragraph}{Guy Coop:}{6}
 \contentsline {paragraph}{Vasileios Mizaridis:}{6}
 \contentsline {paragraph}{Priyanka Mohata:}{6}
 \contentsline {paragraph}{Liangye Yu:}{6}
