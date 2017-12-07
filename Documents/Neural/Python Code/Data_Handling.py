@@ -152,7 +152,7 @@ class data_handler:
                     x = 0.00125 * (float(bbox[0][0]) + float(bbox[1][0]))
                     y = 0.00125 * (float(bbox[0][1]) + float(bbox[1][1]))
                     width = (float(bbox[1][0]) - float(bbox[0][0])) / 400.
-                    height = (float(bbox[1][1]) - float(bbox[0][1]))
+                    height = (float(bbox[1][1]) - float(bbox[0][1])) / 400.
                     output_string += (str(ind) + " " + str(x) + " " + str(y) + " " + str(width) + " " + str(height) + '\n')
 
         outfile = open(output_file_location, 'w')
