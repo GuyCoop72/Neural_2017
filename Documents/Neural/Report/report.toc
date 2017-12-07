@@ -8,7 +8,7 @@
 \contentsline {subsection}{\numberline {2.2}Regional Convolutional Neural Networks (RCNNs)}{4}
 \contentsline {paragraph}{R-CNN}{4}
 \contentsline {paragraph}{Fast R-CNN}{4}
-\contentsline {paragraph}{Faster R-CNN}{4}
+\contentsline {paragraph}{Faster R-CNN}{5}
 \contentsline {subsection}{\numberline {2.3}"You Only Look Once" (YOLO)}{5}
 \contentsline {section}{\numberline {3}Implementation}{5}
 \contentsline {section}{\numberline {4}Experiments}{5}
@@ -16,6 +16,6 @@
 \contentsline {section}{\numberline {6}Description of Collaboration}{5}
 \contentsline {paragraph}{Brendan Case:}{5}
 \contentsline {paragraph}{Guy Coop:}{5}
-\contentsline {paragraph}{Vasileios Mizaridis:}{5}
-\contentsline {paragraph}{Priyanka Mohata:}{5}
-\contentsline {paragraph}{Liangye Yu:}{5}
+\contentsline {paragraph}{Vasileios Mizaridis:}{6}
+\contentsline {paragraph}{Priyanka Mohata:}{6}
+\contentsline {paragraph}{Liangye Yu:}{6}

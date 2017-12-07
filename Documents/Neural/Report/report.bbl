@@ -1,4 +1,9 @@
-\begin{thebibliography}{RDGF15}
+\begin{thebibliography}{GDDM14}
+
+\bibitem[GDDM14]{rcnn}
+Ross Girshick, Jeff Donahue, Trevor Darrell, and Jitendra Malik.
+\newblock R-cnn for object detection.
+\newblock 2014.
 
 \bibitem[Gir15]{fast_rcnn}
 Ross Girshick.

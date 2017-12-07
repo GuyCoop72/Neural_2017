@@ -54,13 +54,13 @@ Selective Search is an algorithm used for regional image searching....
 \subsection{Regional Convolutional Neural Networks (RCNNs)}
 	Given the regional nature of this task, The first option that should be analysed is "Regional Convultional Neural Networks" and their successors. There are three implementations of this algorithm that will be examined:
 	\begin{itemize}
-		\item R-CNN
+		\item R-CNN \cite{rcnn}
 		\item Fast R-CNN \cite{fast_rcnn}
 		\item Faster R-CNN \cite{faster_rcnn}
 	\end{itemize}
 	
 \paragraph{R-CNN}
-R-CNN works by.....
+R-CNN \cite{rcnn} makes use of selective search to generate the region proposals. it typically produces around 2000 region proposals per image, these regions are then sent forward to the CNN in order to determine if they contain an object in the dataset, and what that object is. Once the objects have been detected in the bounding boxes, regression algorithms are used to tighten the bounding boxes more accurately around the objects.
 
 \paragraph{Fast R-CNN}
 Fast R-CNN \cite{fast_rcnn} is an update on the original R-CNN technique that was developed in 2015, it acheives approximately a 9x speed-up on the original at train time, and over 200x speed-up at test time. It does this by unifying the training phase of the boudinding boxes, and the object classification algorithm into a single round of training, rather than having to train the two algorithms seperately. \\
@@ -68,7 +68,8 @@ It also makes use of Region-of-Interest (RoI) pooling layers. "RoI max pooling w
 
 \paragraph{Faster R-CNN}
 Faster R-CNN \cite{faster_rcnn} is another significat update on the Fast R-CNN technique that acheives another dramatic speedup. This algorithm was designed as part of an attempt at real time regional image recognition, and as such is able to operate in almost real time. \\
-Similar to Fast R-CNN it makes use of the RoI pooling layer to create a significant imporvement in performance over traditional R-CNN
+Similar to Fast R-CNN it makes use of the RoI pooling layer to create a significant imporvement in performance over traditional R-CNN. Faster R-CNN also introduces a Region Proposal Network (RPN). The RPN shares convolutional features with the detection network. This allows it to provide almost "cost-free" region proposals to the system. \\
+Fast R-CNN is recorded to be able to operate at approximately 5 frames-per-second (fps) when running on a GPU, meaning that it could be used for real time applications.
 	
 
 \subsection{"You Only Look Once" (YOLO)}
