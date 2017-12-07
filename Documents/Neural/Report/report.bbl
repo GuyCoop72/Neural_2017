@@ -3,12 +3,25 @@
 \bibitem[Gir15]{fast_rcnn}
 Ross Girshick.
 \newblock Fast r-cnn.
-\newblock 2015.
+\newblock {\em arXiv:1504.08083}, 2015.
+
+\bibitem[Goo17]{tensorflow}
+Google.
+\newblock Tensorflow 1.0, 2017.
+
+\bibitem[RF16]{yolo}
+Joseph Redmon and Ali Farhadi.
+\newblock Yolo9000: Better, faster, stronger.
+\newblock {\em arXiv preprint arXiv:1612.08242}, 2016.
 
 \bibitem[RHGS15]{faster_rcnn}
 Shaoqing Ren, Kaiming He, Ross Girshick, and Jian Sun.
 \newblock Faster r-cnn: Towards real-time object detection with region proposal
   networks.
-\newblock 2015.
+\newblock {\em arXiv:1506.01497}, 2015.
+
+\bibitem[sidt17]{skimage}
+scikit-image~development team.
+\newblock skimage 0.13.1, 2017.
 
 \end{thebibliography}

@@ -3,14 +3,19 @@
 \contentsline {paragraph}{Training Set}{3}
 \contentsline {paragraph}{Test Set}{3}
 \contentsline {subsection}{\numberline {1.2}Our Aims}{3}
-\contentsline {section}{\numberline {2}Design}{3}
-\contentsline {subsection}{\numberline {2.1}Regional Convolutional Neural Networks (RCNNs)}{4}
+\contentsline {section}{\numberline {2}Design}{4}
+\contentsline {subsection}{\numberline {2.1}Selective Search}{4}
+\contentsline {subsection}{\numberline {2.2}Regional Convolutional Neural Networks (RCNNs)}{4}
 \contentsline {paragraph}{R-CNN}{4}
 \contentsline {paragraph}{Fast R-CNN}{4}
 \contentsline {paragraph}{Faster R-CNN}{4}
-\contentsline {subsection}{\numberline {2.2}"You Only Look Once" (YOLO)}{4}
-\contentsline {subsection}{\numberline {2.3}Selective Search}{4}
-\contentsline {section}{\numberline {3}Implementation}{4}
-\contentsline {section}{\numberline {4}Experiments}{4}
-\contentsline {section}{\numberline {5}Conclusion}{4}
-\contentsline {section}{\numberline {6}Description of Collaboration}{4}
+\contentsline {subsection}{\numberline {2.3}"You Only Look Once" (YOLO)}{4}
+\contentsline {section}{\numberline {3}Implementation}{5}
+\contentsline {section}{\numberline {4}Experiments}{5}
+\contentsline {section}{\numberline {5}Conclusion}{5}
+\contentsline {section}{\numberline {6}Description of Collaboration}{5}
+\contentsline {paragraph}{Brendan Case:}{5}
+\contentsline {paragraph}{Guy Coop:}{5}
+\contentsline {paragraph}{Vasileios Mizaridis:}{5}
+\contentsline {paragraph}{Priyanka Mohata:}{5}
+\contentsline {paragraph}{Liangye Yu:}{5}

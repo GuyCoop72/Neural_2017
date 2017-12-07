@@ -31,10 +31,10 @@ The data set provided was given in the following format:
 	\item Labels: each image has a corresponding text file that describes the location of each of the predefined objects in the image. This location was given as pairs of integers describing horizontal runs of pixels that form a rectangular bounding box around the object. If the object was not present in the image it was given as [object 1 0] meaning that it had a run length of 0 pixels.
 \end{itemize}
 \paragraph{Training Set}
-The training set contained n (image, label) pairs 
+The training set provided contains 14,625 (image, label) pairs that includes image files and label files that describe the objects and bouding boxes. for conducting experiments, this data set should be subdivided into a Training set and a Validation set to measure how parameter changes affect the accuracy of the results
 
 \paragraph{Test Set}
-The test set contained m (image, label) pairs
+The test set contained m images that are given to simulate unseen data coming into the system. These images do not have the associated label files, and our task is to produce label files that describe the location and class of objects in each of the test image files.
 
 \subsection{Our Aims}
 Our aims for this project are as follows:
@@ -46,11 +46,10 @@ Our aims for this project are as follows:
 \end {itemize}
 
 \section{Design}
---Options available to us:\\
-	- RCNN, Fast, Faster\\
-	- Yolo\\
-	- Selective Search\\
-	- general backprop\\
+For this task our Initial instict was to attempt to solve it with a simple feedforward neural network. And whilst this would have been adequate for a simple classification task, we determined it would not provide a good solution to this region bounded classification task. From there we exaimned other possible methods of solving the task. The first sub-method we investigated was using Selective Search to identify regions of interest inside the image. We then expanded this to determine other pre-established algorithms that make use of selective search and how they compare to other similar algorithms.
+
+\subsection{Selective Search}
+Selective Search is an algorithm used for regional image searching....
 	
 \subsection{Regional Convolutional Neural Networks (RCNNs)}
 	Given the regional nature of this task, The first option that should be analysed is "Regional Convultional Neural Networks" and their successors. There are three implementations of this algorithm that will be examined:
@@ -71,24 +70,39 @@ Faster R-CNN \cite{faster_rcnn} is another significat update on the Fast R-CNN t
 	
 
 \subsection{"You Only Look Once" (YOLO)}
-"You Only Look Once" (YOLO) was named as such because the theory centers around only performing a single pass across the image, rather than having to analyse the same data multiple times.
-
-\subsection{Selective Search}
-Selective Search is an algorithm used for regional image searching....
+"You Only Look Once" (YOLO) was named as such because the algorithm centers around only performing a single pass across the image, rather than having to analyse the same data multiple times.
 	
 
 \section{Implementation}
---Using RCNN
---TensorFlow Layers
+--Using RCNN\\
+--TensorFlow Layers \cite{tensorflow}\\
+--SciKit Image package\cite{skimage}\\
+--using YOLO\cite{yolo}\\
+--Darknet\\
 
 \section{Experiments}
 
 \section{Conclusion}
 
 \section{Description of Collaboration}
-Everyone did good work.
-brendan and bill - RCNN
-Priyanka Liangye - YOLO
+An overview of each member's contribution to the project is given below:
+\paragraph{Brendan Case:}
+did something
+
+\paragraph{Guy Coop:}
+\begin{itemize}
+	\item Produced data\_handler python class used by multiple systems to reformat the training data into the required input format for the neural network. And reformat the output from the network back into a format that matches the input.
+	\item Lead the writing of the report, and collated it into a \LaTeX document.
+\end{itemize}
+
+\paragraph{Vasileios Mizaridis:}
+did something
+
+\paragraph{Priyanka Mohata:}
+did something
+
+\paragraph{Liangye Yu:}
+did something
 
 
 \bibliography{report_bib}
