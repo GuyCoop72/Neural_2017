@@ -1,11 +1,14 @@
 # note, check if co_ordinates start at 0,0 or 1,1 and fix get_pixel_list method in generate_output_file
 # note, if bounding box overlap is possible, then add compression to pixel_list santization function
-import matplotlib.pylab as plt
 import os
 import numpy as np
+import skimage.io as skio
+import skimage.transform as transform
+import matplotlib.pyplot as plt
 
 class data_handler:
     image_size = [400, 400]
+    file_path = "../../NC_data/{}"
 
     object_list = [
         "aeroplane",
@@ -130,19 +133,13 @@ class data_handler:
         return bounding_boxes
 
     @staticmethod
-    def get_sub_image(image_array, pixel_list):
-        # gets a flattened sub_image from a full image and a list of pixels.
-        output_array = []
-        for pair in pixel_list:
-            for i in range(pair[0], pair[0] + pair[1]):
-                output_array.append(image_array[i])
-        return output_array
-
-    @staticmethod
-    def image_read(file_name):
-        # reads a jpg file into a [x * y, 3] array containing rgb values
-        plt.imread(file_name)
-        output_array = np.reshape()
+    def get_sub_image(bounding_box, main_image):
+        x1 = bounding_box[0][0]
+        y1 = bounding_box[0][1]
+        x2 = bounding_box[1][0]
+        y2 = bounding_box[1][1]
+        region = np.array(main_image)[y1:y2, x1:x2]
+        return transform.resize(region, (120, 120))
 
     @staticmethod
     def get_yolo_text_files(input_file_location, output_file_location):
@@ -154,6 +151,7 @@ class data_handler:
                 for bbox in bboxes[obj]:
                     output_string += (str(ind) + " " \
                                      + str(float(bbox[0][0]) / 400.) + " " \
+                                     + str(float(bbox[0][0]) / 400. ) + " " \
                                      + str(float(bbox[0][1]) / 400.) + " " \
                                      + str(float(bbox[1][0] - bbox[0][0]) / 400.) + " " \
                                      + str(float(bbox[1][1] - bbox[0][1]) / 400.) + '\n')
@@ -165,22 +163,32 @@ class data_handler:
 
     @staticmethod
     def build_training_array_single(bounding_boxes, image):
-    # builds two arrays from a single image and label combination:
-    # -data contatining a list of flattened sub images
-    # -labels contatining the corresponding labels for those images
+        # builds two arrays from a single image and label combination:
+        # -data contatining a list of flattened sub images
+        # -labels contatining the corresponding labels for those images
         labels = []
         data = []
         for obj in data_handler.object_list:
             if bounding_boxes[obj] != bounding_boxes:
                 for bbox in bounding_boxes[obj]:
                     labels.append(obj)
-                    data.append( get_sub_image(image, bbox) )
-        return [labels, data]
+                    data.append(data_handler.get_sub_image(bbox, image))
+        return labels, data
+
+    @staticmethod
+    def get_training_data():
+        labels = []
+        data = []
+        for f in os.listdir(data_handler.file_path.format('train'))[:100]:
+            if f.count('.txt'):
+                bboxes = data_handler.get_bounding_boxes(open(data_handler.file_path.format('train') + '/' + f))
+                img = data_handler.file_path.format('train') + '/' + f.replace('.txt', '') + '.jpg'
+                label, datum = data_handler.build_training_array_single(bboxes, skio.imread(img))
+                labels.extend(label)
+                data.extend(datum)
+        return data, labels
 
 
-
-# test for generate_output_file method
-# generates an empty bounding box dictionary then attempts to print the output file
 
 print(data_handler.get_yolo_text_files("/home/guy/Documents/Neural/Data/train/2007_000042.txt", "/home/guy/Documents/Neural/Data/temp.txt"))
 
