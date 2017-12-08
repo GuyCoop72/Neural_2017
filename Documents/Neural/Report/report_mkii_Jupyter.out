@@ -1,0 +1,17 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Data Sets}{section.1}% 2
+\BOOKMARK [3][-]{subsubsection.1.1.1}{Training Set:}{subsection.1.1}% 3
+\BOOKMARK [3][-]{subsubsection.1.1.2}{Test Set:}{subsection.1.1}% 4
+\BOOKMARK [2][-]{subsection.1.2}{Our Aims}{section.1}% 5
+\BOOKMARK [1][-]{section.2}{Design}{}% 6
+\BOOKMARK [2][-]{subsection.2.1}{Selective Search}{section.2}% 7
+\BOOKMARK [2][-]{subsection.2.2}{Regional Convolutional Neural Networks \(RCNNs\)}{section.2}% 8
+\BOOKMARK [3][-]{subsubsection.2.2.1}{R-CNN}{subsection.2.2}% 9
+\BOOKMARK [3][-]{subsubsection.2.2.2}{Fast R-CNN}{subsection.2.2}% 10
+\BOOKMARK [3][-]{subsubsection.2.2.3}{Faster R-CNN}{subsection.2.2}% 11
+\BOOKMARK [2][-]{subsection.2.3}{You Only Look Once \(YOLO\)}{section.2}% 12
+\BOOKMARK [1][-]{section.3}{Implementation}{}% 13
+\BOOKMARK [1][-]{section.4}{Experiments}{}% 14
+\BOOKMARK [1][-]{section.5}{Conclusions}{}% 15
+\BOOKMARK [1][-]{section.6}{Description of Collaboration}{}% 16
+\BOOKMARK [1][-]{section.7}{References}{}% 17

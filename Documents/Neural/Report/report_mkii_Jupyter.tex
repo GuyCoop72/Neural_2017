@@ -1,0 +1,1074 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Report mkii}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+   
+    
+    \section*{Neural Computation
+Assignment}\label{neural-computation-assignment}
+
+\subsubsection*{Brendan Case - bkc721 -
+1801421}\label{brendan-case---bkc721---1801421}
+
+\subsubsection*{Guy Coop - gtc434 -
+1447634}\label{guy-coop---gtc434---1447634}
+
+\subsubsection*{Vasileios Mizaridis - vxm716 -
+1844216}\label{vasileios-mizaridis---vxm716---1844216}
+
+\subsubsection*{Priyanka Mohata - pxm374 -
+1341274}\label{priyanka-mohata---pxm374---1341274}
+
+\subsubsection*{Liangye Yu - lxy736 -
+1810736}\label{liangye-yu---lxy736---1810736}
+
+    \section*{Abstract}\label{abstract}
+
+Image Recognition has, in recent history been relatively ''solved'' in
+the sense that algorithms have now been recorded outperforming humans in
+simple image recogntion tasks. However regional image recognition where
+the algorithm is tasked with recognizing multiple images inside a whole
+chaotic scene is still an emerging field. Our team analysed the most
+promising methods of regional image recognition, and implemented our own
+solution to a simplified regional recognition task. Our solution was
+able to locate and classify objects with some degree of accuracy,
+however was not able to submit an accepted result to the kaggle
+competition.
+
+    \section{Introduction}\label{introduction}
+
+For this project, our team was assigned the task of implementing a
+regional image recognition system.
+
+\subsection{Data Sets}\label{data-sets}
+
+The data set provided was given in the following format:
+
+\begin{itemize}
+\item
+  Data: 400x400 RGB image files in .jpg format
+\item
+  Labels: each image has a corresponding text file that describes the
+  location of each of the predefined objects in the image. This location
+  was given as pairs of integers describing horizontal runs of pixels
+  that form a rectangular bounding box around the object. If the object
+  was not present in the image it was given as {[}object 1 0{]} meaning
+  that it had a run length of 0 pixels.
+\end{itemize}
+
+\subsubsection{Training Set:}\label{training-set}
+
+The training set provided contains 14,625 (image, label) pairs that
+includes image files and label files that describe the objects and
+bouding boxes. for conducting experiments, this data set should be
+subdivided into a Training set and a Validation set to measure how
+parameter changes affect the accuracy of the results.
+
+\subsubsection{Test Set:}\label{test-set}
+
+The test set contained 2500 images that are given to simulate unseen
+data coming into the system. These images do not have the associated
+label files, and our task is to produce label files that describe the
+location and class of objects in each of the test image files.
+
+\subsection{Our Aims}\label{our-aims}
+
+Our aims for this project are as follows:
+
+\begin{itemize}
+\item
+  Discover and Analyse currently exisitng method of performing regional
+  image recognition
+\item
+  Produce our own implementation of one of these methods, using any
+  necessary packages or source code segments as necessary.
+\item
+  Conduct experiments to optimize the recognition system in terms of
+  bounding box locations, and object classification.
+\item
+  Produce a set of conclusions about the effectiveness of the various
+  recognition methods, and the optimal parameters of our implementation
+  for the data set provided.
+\end{itemize}
+
+    \section{Design}\label{design}
+
+For this task our Initial instict was to attempt to solve it with a
+simple feedforward neural network. And whilst this would have been
+adequate for a simple classification task, we determined it would not
+provide a good solution to this region bounded classification task. From
+there we exaimned other possible methods of solving the task. The first
+sub-method we investigated was using Selective Search to identify
+regions of interest inside the image. We then expanded this to determine
+other pre-established algorithms that make use of selective search and
+how they compare to other similar algorithms.
+
+\subsection{Selective Search}\label{selective-search}
+
+Selective Search is an algorithm used for regional image searching. It
+works by performing image processing to segment an image by multiple
+factors such as: Colour, Texture, an Brightness, in order to try and
+seperate multiple object inside an image. once these sections have been
+seperated. rectangular bounding boxes can be formed around the objects
+so that they can be passed to an image recognizer network.
+
+\subsection{Regional Convolutional Neural Networks
+(RCNNs)}\label{regional-convolutional-neural-networks-rcnns}
+
+Given the regional nature of this task, The first option that should be
+analysed is ''Regional Convultional Neural Networks'' and their
+successors. There are three implementations of this algorithm that will
+be examined:
+
+\begin{itemize}
+\item
+  R-CNN {[}GDDM14{]}
+\item
+  Fast R-CNN {[}Gir15{]}
+\item
+  Faster R-CNN {[}RHGS15{]}
+\end{itemize}
+
+\subsubsection{R-CNN}\label{r-cnn}
+
+R-CNN {[}GDDM14{]} makes use of selective search to generate the region
+proposals. it typically produces around 2000 region proposals per image,
+these regions are then sent forward to the CNN in order to determine if
+they contain an object in the dataset, and what that object is. Once the
+objects have been detected in the bounding boxes, regression algorithms
+are used to tighten the bounding boxes more accurately around the
+objects.
+
+\subsubsection{Fast R-CNN}\label{fast-r-cnn}
+
+Fast R-CNN {[}Gir15{]} is an update on the original R-CNN technique that
+was developed in 2015, it acheives approximately a 9x speed-up on the
+original at train time, and over 200x speed-up at test time. It does
+this by unifying the training phase of the boudinding boxes, and the
+object classification algorithm into a single round of training, rather
+than having to train the two algorithms seperately. It also makes use of
+Region-of-Interest (RoI) pooling layers. "RoI max pooling works by
+reducing the \(h*w\) RoI window into an H\emph{W grid of sub-windows of
+approximate size h/H } w/W and then max-pooling the values in each
+sub-window into the corresponding output grid cell." {[}Gir15{]}
+
+\subsubsection{Faster R-CNN}\label{faster-r-cnn}
+
+Faster R-CNN {[}RHGS15{]} is another significat update on the Fast R-CNN
+technique that acheives another dramatic speedup. This algorithm was
+designed as part of an attempt at real time regional image recognition,
+and as such is able to operate in almost real time. Similar to Fast
+R-CNN it makes use of the RoI pooling layer to create a significant
+imporvement in performance over traditional R-CNN. Faster R-CNN also
+introduces a Region Proposal Network (RPN). The RPN shares convolutional
+features with the detection network. This allows it to provide almost
+"cost-free" region proposals to the system. Fast R-CNN is recorded to be
+able to operate at approximately 5 frames-per-second (fps) when running
+on a GPU, meaning that it could be used for real time applications.
+
+\subsection{You Only Look Once (YOLO)}\label{you-only-look-once-yolo}
+
+Another option we explored is a technique called ``You Only Look Once''
+(YOLO) {[}RF16{]}. YOLO was named as such because the algorithm centers
+around only performing a single pass across the image, rather than
+having to analyse the same data multiple times. This techniques,
+introduced in 2015, was unlike any other object detection model
+currently in-use. Unlike R-CNN techniques which pass the images through
+multiple networks, YOLO only requires one network evaluation.
+
+In 2016, YOLO9000(also called YOLOv2) was introduced which had most of
+the same functionality offered in the initial version of YOLO, however
+it was modified to improve the localization and recall issue present in
+YOLO while trying to maintain the classification accuracy and speed. In
+{[}RF16{]} the YOLOv2 technique is recorded to be able to operate close
+to 45 frames-per-second (fps) on a normal CPU. This is faster than the
+original YOLO and also it understands more generalized object
+representations.
+
+    \section{Implementation}\label{implementation}
+
+    A first attempt resembled the original R-CNN algorithm outlined in
+{[}GDDM14{]}. This was chosen from the initial intuition that by
+training a CNN with 3 convolutional layers and 2 fully connected layers,
+we could achieve good accuracy for the classification component of the
+problem on simple image sets such as MNIST. This CNN was implemented
+using the layers module in TensorFlow {[}Goo17{]}. We felt perhaps
+decent accuracy could be obtained by using this trained CNN on multiple
+proposed regions, then giving these regions a 'score' based on how
+confident the classification was, and taking the best scoring region
+among largely intersecting regions as the output region. This is
+essentially the R-CNN algorithm. We decided to use the same region
+proposal algorithm, SelectionSearch, as the original authors, but with
+different parameters to reduce region proposals and favor larger
+bounding boxes. Finding which parameters favored these preferences was
+one source of experimentation throughout the project. In addition, we
+found simply removing region proposals with certain extreme aspect
+ratios was a reasonable assumption for this data set.
+
+These regions, along with the regions provided in the training text
+files, were converted to 120 * 120 arrays of rgb tuples using Skimage
+(SciKit Image processing library {[}sidt17{]}) and numpy reshaping
+tools, which could then be used to train the CNN.
+
+In the interest of time and sanity, this implementation was largely
+discarded in favor of the more ready-to-use implementation of YOLO from
+Darknet. In order to comply with the requirement to implement code in
+Python, we made use of a Python wrapper provided by Darknet. To use
+this, we wrote a script which loaded a trained network with provided
+weights and made predictions for each image in the test set, appending
+the predictions in the proper format to a submission.txt file, used to
+submit our predictions. We also adjusted one of the provided networks,
+'tiny-yolo,' and trained our own weights using the training image and
+labels provided; however, given the limited time these weights never
+reached the point of having an average loss below 100.
+
+    The following class: "data\_handling" includes: - a settable image\_size
+variable that can be changed for different data sets. - a full list of
+the names of each object that is part of the data set.\\
+- a method to get a dictionary of corner locations of bouding boxes
+based on the label files given in the dataset. - a pair of methods to
+convert the full set of label files to the style used by YOLO. - a
+method to convert the output of our systems to the label format required
+by the data set. - a method to load the data set into the program to be
+manipulated.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k+kn}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{os}
+        \PY{k+kn}{import} \PY{n+nn}{skimage.io} \PY{k+kn}{as} \PY{n+nn}{skio}
+        \PY{k+kn}{import} \PY{n+nn}{skimage.transform} \PY{k+kn}{as} \PY{n+nn}{transform}
+        
+        \PY{k}{class} \PY{n+nc}{data\PYZus{}handler}\PY{p}{:}
+        \PY{c+c1}{\PYZsh{} A class to manage data type changes from one format to another:}
+        \PY{c+c1}{\PYZsh{} Manages input text labels into format used by predesigned networks}
+        \PY{c+c1}{\PYZsh{} Also manages outputs produced and converts them to the output format.}
+        
+            \PY{n}{image\PYZus{}size} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{400}\PY{p}{,} \PY{l+m+mi}{400}\PY{p}{]}
+        
+            \PY{n}{object\PYZus{}list} \PY{o}{=} \PY{p}{[}
+                \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{aeroplane}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+                \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{bicycle}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+                \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{bird}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+                \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{boat}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+                \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{bottle}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+                \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{bus}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+                \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{car}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+                \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{cat}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+                \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{chair}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+                \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{cow}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+                \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{diningtable}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+                \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{dog}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+                \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{horse}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+                \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{motorbike}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+                \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{person}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+                \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{pottedplant}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+                \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{sheep}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+                \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{sofa}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+                \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{train}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+                \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{tvmonitor}\PY{l+s+s2}{\PYZdq{}}
+            \PY{p}{]}
+            
+            
+            \PY{n+nd}{@staticmethod}
+            \PY{k}{def} \PY{n+nf}{get\PYZus{}bounding\PYZus{}boxes}\PY{p}{(}\PY{n}{label}\PY{p}{)}\PY{p}{:}
+                \PY{c+c1}{\PYZsh{} from an input pixel list file, generate a dictionary of bounding boxes}
+                \PY{c+c1}{\PYZsh{} the dictionary contains a list of TL, BR bounding boxes under each bounding\PYZus{}boxes[ind]}
+                \PY{c+c1}{\PYZsh{} i.e. bounding boxes[\PYZsq{}aeroplane\PYZsq{}] will return a list of all the bounding boxes for planes in a single image}
+                \PY{k}{def} \PY{n+nf}{pixel\PYZus{}list\PYZus{}to\PYZus{}bboxes}\PY{p}{(}\PY{n}{pixel\PYZus{}list}\PY{p}{)}\PY{p}{:}
+                    \PY{n}{pixel\PYZus{}loc\PYZus{}corners} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+                    \PY{n}{bboxes} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+                    \PY{c+c1}{\PYZsh{}start pixel location, current left pixel location, run length}
+                    \PY{k}{if} \PY{n}{pixel\PYZus{}list}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{1} \PY{o+ow}{and} \PY{n}{pixel\PYZus{}list}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:}
+                        \PY{k}{return} \PY{n}{bounding\PYZus{}boxes}
+                    \PY{n}{pixel\PYZus{}loc\PYZus{}corners}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{[}\PY{n}{pixel\PYZus{}list}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{pixel\PYZus{}list}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{pixel\PYZus{}list}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+                    \PY{k}{for} \PY{n}{pair} \PY{o+ow}{in} \PY{n}{pixel\PYZus{}list}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{]}\PY{p}{:}
+                        \PY{n}{break\PYZus{}var} \PY{o}{=} \PY{l+m+mi}{0}
+                        \PY{k}{for} \PY{n}{ind}\PY{p}{,} \PY{n}{objs\PYZus{}found} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{pixel\PYZus{}loc\PYZus{}corners}\PY{p}{)}\PY{p}{:}
+                            \PY{k}{if} \PY{n}{objs\PYZus{}found}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{+} \PY{n}{data\PYZus{}handler}\PY{o}{.}\PY{n}{image\PYZus{}size}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{==} \PY{n}{pair}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{:}
+                                \PY{c+c1}{\PYZsh{} not a new object}
+                                \PY{n}{pixel\PYZus{}loc\PYZus{}corners}\PY{p}{[}\PY{n}{ind}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{pair}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+                                \PY{n}{break\PYZus{}var} \PY{o}{=} \PY{l+m+mi}{1}
+                                \PY{k}{break}
+                        \PY{k}{if} \PY{n}{break\PYZus{}var} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:}
+                            \PY{n}{pixel\PYZus{}loc\PYZus{}corners}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{[}\PY{n}{pair}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{pair}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{pair}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+        
+                    \PY{c+c1}{\PYZsh{} finished building pixel\PYZus{}loc\PYZus{}corners}
+                    \PY{k}{for} \PY{n}{corner} \PY{o+ow}{in} \PY{n}{pixel\PYZus{}loc\PYZus{}corners}\PY{p}{:}
+                        \PY{n}{x1} \PY{o}{=} \PY{p}{(}\PY{p}{(}\PY{n}{corner}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)} \PY{o}{\PYZpc{}} \PY{n}{data\PYZus{}handler}\PY{o}{.}\PY{n}{image\PYZus{}size}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)} \PY{o}{+} \PY{l+m+mi}{1}
+                        \PY{n}{y1} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n}{corner}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{/} \PY{n}{data\PYZus{}handler}\PY{o}{.}\PY{n}{image\PYZus{}size}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+                        \PY{n}{x2} \PY{o}{=} \PY{p}{(}\PY{p}{(}\PY{n}{corner}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{+} \PY{n}{corner}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{)} \PY{o}{\PYZpc{}} \PY{n}{data\PYZus{}handler}\PY{o}{.}\PY{n}{image\PYZus{}size}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)} \PY{o}{+} \PY{l+m+mi}{1}
+                        \PY{n}{y2} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{p}{(}\PY{n}{corner}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{+} \PY{n}{corner}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)} \PY{o}{/} \PY{n}{data\PYZus{}handler}\PY{o}{.}\PY{n}{image\PYZus{}size}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+                        \PY{n}{bboxes}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{n}{x1}\PY{p}{,} \PY{n}{y1}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{n}{x2}\PY{p}{,} \PY{n}{y2}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+        
+                    \PY{k}{return} \PY{n}{bboxes}
+        
+        
+                \PY{n}{pixel\PYZus{}list\PYZus{}dict} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+                \PY{k}{for} \PY{n}{ind}\PY{p}{,} \PY{n}{line} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{label}\PY{o}{.}\PY{n}{readlines}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                    \PY{n}{pixel\PYZus{}list\PYZus{}dict}\PY{p}{[}\PY{n}{data\PYZus{}handler}\PY{o}{.}\PY{n}{object\PYZus{}list}\PY{p}{[}\PY{n}{ind}\PY{p}{]}\PY{p}{]} \PY{o}{=} \PY{n+nb}{map}\PY{p}{(}\PY{n+nb}{int}\PY{p}{,} \PY{p}{(}\PY{n}{line}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{,}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+                    \PY{n}{pixel\PYZus{}list\PYZus{}dict}\PY{p}{[}\PY{n}{data\PYZus{}handler}\PY{o}{.}\PY{n}{object\PYZus{}list}\PY{p}{[}\PY{n}{ind}\PY{p}{]}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}
+                        \PY{n}{pixel\PYZus{}list\PYZus{}dict}\PY{p}{[}\PY{n}{data\PYZus{}handler}\PY{o}{.}\PY{n}{object\PYZus{}list}\PY{p}{[}\PY{n}{ind}\PY{p}{]}\PY{p}{]}\PY{p}{,}
+                        \PY{p}{[}\PY{n+nb}{len}\PY{p}{(}\PY{n}{pixel\PYZus{}list\PYZus{}dict}\PY{p}{[}\PY{n}{data\PYZus{}handler}\PY{o}{.}\PY{n}{object\PYZus{}list}\PY{p}{[}\PY{n}{ind}\PY{p}{]}\PY{p}{]}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}
+        
+                \PY{n}{bounding\PYZus{}boxes} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+                \PY{k}{for} \PY{n}{obj} \PY{o+ow}{in} \PY{n}{data\PYZus{}handler}\PY{o}{.}\PY{n}{object\PYZus{}list}\PY{p}{:}
+                    \PY{n}{bounding\PYZus{}boxes}\PY{p}{[}\PY{n}{obj}\PY{p}{]} \PY{o}{=} \PY{n}{pixel\PYZus{}list\PYZus{}to\PYZus{}bboxes}\PY{p}{(}\PY{n}{pixel\PYZus{}list\PYZus{}dict}\PY{p}{[}\PY{n}{obj}\PY{p}{]}\PY{p}{)}
+        
+                \PY{k}{return} \PY{n}{bounding\PYZus{}boxes}
+            
+            
+            \PY{n+nd}{@staticmethod}
+            \PY{k}{def} \PY{n+nf}{get\PYZus{}yolo\PYZus{}text\PYZus{}files}\PY{p}{(}\PY{n}{input\PYZus{}file\PYZus{}location}\PY{p}{,} \PY{n}{output\PYZus{}file\PYZus{}location}\PY{p}{)}\PY{p}{:}
+                \PY{c+c1}{\PYZsh{} Reformats a single text data file into the format required to train for the YOLO network}
+                \PY{n}{output\PYZus{}string} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdq{}}
+                \PY{n}{f} \PY{o}{=} \PY{n+nb}{open}\PY{p}{(}\PY{n}{input\PYZus{}file\PYZus{}location}\PY{p}{)}
+                \PY{n}{bboxes} \PY{o}{=} \PY{n}{data\PYZus{}handler}\PY{o}{.}\PY{n}{get\PYZus{}bounding\PYZus{}boxes}\PY{p}{(}\PY{n}{f}\PY{p}{)}
+                \PY{k}{for} \PY{n}{ind}\PY{p}{,} \PY{n}{obj} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{data\PYZus{}handler}\PY{o}{.}\PY{n}{object\PYZus{}list}\PY{p}{)}\PY{p}{:}
+                    \PY{k}{if} \PY{n}{bboxes}\PY{p}{[}\PY{n}{obj}\PY{p}{]} \PY{o}{!=} \PY{n}{bboxes}\PY{p}{:}
+                        \PY{k}{for} \PY{n}{bbox} \PY{o+ow}{in} \PY{n}{bboxes}\PY{p}{[}\PY{n}{obj}\PY{p}{]}\PY{p}{:}
+                            \PY{n}{x} \PY{o}{=} \PY{l+m+mf}{0.00125} \PY{o}{*} \PY{p}{(}\PY{n+nb}{float}\PY{p}{(}\PY{n}{bbox}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)} \PY{o}{+} \PY{n+nb}{float}\PY{p}{(}\PY{n}{bbox}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+                            \PY{n}{y} \PY{o}{=} \PY{l+m+mf}{0.00125} \PY{o}{*} \PY{p}{(}\PY{n+nb}{float}\PY{p}{(}\PY{n}{bbox}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)} \PY{o}{+} \PY{n+nb}{float}\PY{p}{(}\PY{n}{bbox}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+                            \PY{n}{width} \PY{o}{=} \PY{p}{(}\PY{n+nb}{float}\PY{p}{(}\PY{n}{bbox}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n+nb}{float}\PY{p}{(}\PY{n}{bbox}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{l+m+mf}{400.}
+                            \PY{n}{height} \PY{o}{=} \PY{p}{(}\PY{n+nb}{float}\PY{p}{(}\PY{n}{bbox}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n+nb}{float}\PY{p}{(}\PY{n}{bbox}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{l+m+mf}{400.}
+                            \PY{n}{output\PYZus{}string} \PY{o}{+}\PY{o}{=} \PY{p}{(}\PY{n+nb}{str}\PY{p}{(}\PY{n}{ind}\PY{p}{)} \PY{o}{+} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZdq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{o}{+} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZdq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{y}\PY{p}{)} \PY{o}{+} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZdq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{width}\PY{p}{)} \PY{o}{+} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZdq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{height}\PY{p}{)} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+                \PY{n}{outfile} \PY{o}{=} \PY{n+nb}{open}\PY{p}{(}\PY{n}{output\PYZus{}file\PYZus{}location}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{w}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                \PY{n}{outfile}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{n}{output\PYZus{}string}\PY{p}{)}
+                \PY{n}{outfile}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+                \PY{k}{return} \PY{n}{output\PYZus{}string}
+            
+            \PY{n+nd}{@staticmethod}
+            \PY{k}{def} \PY{n+nf}{batch\PYZus{}create\PYZus{}yolo\PYZus{}labels}\PY{p}{(}\PY{n}{input\PYZus{}dir}\PY{p}{,} \PY{n}{output\PYZus{}dir}\PY{p}{)}\PY{p}{:}
+                \PY{c+c1}{\PYZsh{} converts a full set of labels into the yolo required format}
+                \PY{n}{txt\PYZus{}files} \PY{o}{=} \PY{p}{[}\PY{n+nb}{file} \PY{k}{for} \PY{n+nb}{file} \PY{o+ow}{in} \PY{n}{os}\PY{o}{.}\PY{n}{listdir}\PY{p}{(}\PY{n}{input\PYZus{}dir}\PY{p}{)} \PY{k}{if} \PY{n+nb}{file}\PY{o}{.}\PY{n}{endswith}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{.txt}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{]}
+                \PY{k}{for} \PY{n+nb}{file} \PY{o+ow}{in} \PY{n}{txt\PYZus{}files}\PY{p}{:}
+                    \PY{n}{data\PYZus{}handler}\PY{o}{.}\PY{n}{get\PYZus{}yolo\PYZus{}text\PYZus{}files}\PY{p}{(}\PY{n}{input\PYZus{}dir} \PY{o}{+} \PY{n+nb}{file}\PY{p}{,} \PY{n}{output\PYZus{}dir} \PY{o}{+} \PY{n+nb}{file}\PY{p}{)}
+                \PY{k}{return}
+            
+            \PY{n+nd}{@staticmethod}
+            \PY{k}{def} \PY{n+nf}{generate\PYZus{}output\PYZus{}file}\PY{p}{(}\PY{n}{bounding\PYZus{}boxes}\PY{p}{,} \PY{n}{filename}\PY{p}{)}\PY{p}{:}
+                \PY{c+c1}{\PYZsh{}generate an output pixel list from the bounding boxes dictionary}
+                \PY{c+c1}{\PYZsh{} inputs: a list of bounding boxes for a single image}
+                \PY{c+c1}{\PYZsh{}         the file name of the image, i.e. (\PYZsq{}2007\PYZus{}00042.jpg\PYZsq{})}
+                \PY{c+c1}{\PYZsh{}}
+                \PY{c+c1}{\PYZsh{} output: a string that contains the entire output information for the file}
+                
+                \PY{k}{def} \PY{n+nf}{get\PYZus{}one\PYZus{}pixel\PYZus{}list}\PY{p}{(}\PY{n}{bounding\PYZus{}box}\PY{p}{)}\PY{p}{:}
+                    \PY{c+c1}{\PYZsh{} generates a list of pixels for a rectangular bounding box}
+                    \PY{n}{pixel\PYZus{}list} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+                    \PY{n}{h\PYZus{}run} \PY{o}{=} \PY{n}{bounding\PYZus{}box}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{bounding\PYZus{}box}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+                    \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{bounding\PYZus{}box}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{bounding\PYZus{}box}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{:}
+                        \PY{c+c1}{\PYZsh{} perform vertical steps down}
+                        \PY{n}{pixel\PYZus{}list}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{[}\PY{n}{bounding\PYZus{}box}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{+} \PY{p}{(}\PY{n}{data\PYZus{}handler}\PY{o}{.}\PY{n}{image\PYZus{}size}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{*} \PY{n}{j}\PY{p}{)}\PY{p}{,} \PY{n}{h\PYZus{}run}\PY{p}{]}\PY{p}{)}
+                    \PY{k}{return} \PY{n}{pixel\PYZus{}list}
+        
+                \PY{k}{def} \PY{n+nf}{sort\PYZus{}pixel\PYZus{}list}\PY{p}{(}\PY{n}{pixel\PYZus{}list}\PY{p}{)}\PY{p}{:}
+                    \PY{c+c1}{\PYZsh{} sorts pixel list and manages possible overlaps}
+                    \PY{n}{pixel\PYZus{}list} \PY{o}{=} \PY{n+nb}{sorted}\PY{p}{(}\PY{n}{pixel\PYZus{}list}\PY{p}{,} \PY{n}{key}\PY{o}{=}\PY{k}{lambda} \PY{n}{x}\PY{p}{:}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+        
+                    \PY{c+c1}{\PYZsh{}check if overlap is possible, if so perform compressions stage}
+                    \PY{k}{return} \PY{n}{pixel\PYZus{}list}
+        
+                \PY{k}{def} \PY{n+nf}{str\PYZus{}pixel\PYZus{}list}\PY{p}{(}\PY{n}{pixel\PYZus{}list}\PY{p}{)}\PY{p}{:}
+                    \PY{c+c1}{\PYZsh{} convert a pixel list into a space seperated string}
+                    \PY{n}{pix\PYZus{}string} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdq{}}
+                    \PY{k}{for} \PY{n}{pair} \PY{o+ow}{in} \PY{n}{pixel\PYZus{}list}\PY{p}{:}
+                        \PY{n}{pix\PYZus{}string} \PY{o}{+}\PY{o}{=} \PY{n+nb}{str}\PY{p}{(}\PY{n}{pair}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)} \PY{o}{+} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZdq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{pair}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)} \PY{o}{+} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZdq{}}
+                    \PY{k}{return} \PY{n}{pix\PYZus{}string}
+        
+                \PY{k}{def} \PY{n+nf}{get\PYZus{}full\PYZus{}pixel\PYZus{}list}\PY{p}{(}\PY{n}{bounding\PYZus{}boxes}\PY{p}{)}\PY{p}{:}
+                    \PY{k}{if} \PY{n}{bounding\PYZus{}boxes} \PY{o}{==} \PY{p}{[}\PY{p}{]}\PY{p}{:}
+                        \PY{k}{return} \PY{p}{[}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{]}
+        
+                    \PY{k}{else}\PY{p}{:}
+                        \PY{n}{pixel\PYZus{}list} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+                        \PY{k}{for} \PY{n}{bounding\PYZus{}box} \PY{o+ow}{in} \PY{n}{bounding\PYZus{}boxes}\PY{p}{:}
+                            \PY{n}{pixel\PYZus{}list} \PY{o}{+}\PY{o}{=} \PY{n}{get\PYZus{}one\PYZus{}pixel\PYZus{}list}\PY{p}{(}\PY{n}{bounding\PYZus{}box}\PY{p}{)}
+        
+                        \PY{n}{pixel\PYZus{}list} \PY{o}{=} \PY{n}{sort\PYZus{}pixel\PYZus{}list}\PY{p}{(}\PY{n}{pixel\PYZus{}list}\PY{p}{)}
+                        \PY{k}{return} \PY{n}{pixel\PYZus{}list}
+        
+                \PY{n}{output\PYZus{}string} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdq{}}
+                \PY{k}{for} \PY{n}{obj} \PY{o+ow}{in} \PY{n}{data\PYZus{}handler}\PY{o}{.}\PY{n}{object\PYZus{}list}\PY{p}{:}
+                    \PY{n}{output\PYZus{}string} \PY{o}{=} \PY{n}{output\PYZus{}string} \PY{o}{+} \PY{n}{filename} \PY{o}{+} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZus{}}\PY{l+s+s2}{\PYZdq{}} \PY{o}{+} \PY{n}{obj} \PY{o}{+} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{,}\PY{l+s+s2}{\PYZdq{}}
+                    \PY{n}{pixel\PYZus{}list} \PY{o}{=} \PY{n}{get\PYZus{}full\PYZus{}pixel\PYZus{}list}\PY{p}{(}\PY{n}{bounding\PYZus{}boxes}\PY{p}{[}\PY{n}{obj}\PY{p}{]}\PY{p}{)}
+                    \PY{n}{output\PYZus{}string} \PY{o}{+}\PY{o}{=} \PY{n}{str\PYZus{}pixel\PYZus{}list}\PY{p}{(}\PY{n}{pixel\PYZus{}list}\PY{p}{)}
+                    \PY{n}{output\PYZus{}string} \PY{o}{+}\PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}
+        
+                \PY{k}{return} \PY{n}{output\PYZus{}string}
+            
+            
+            \PY{n+nd}{@staticmethod}
+            \PY{k}{def} \PY{n+nf}{get\PYZus{}training\PYZus{}data}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+                \PY{n}{labels} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+                \PY{n}{data} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+                \PY{k}{for} \PY{n}{f} \PY{o+ow}{in} \PY{n}{os}\PY{o}{.}\PY{n}{listdir}\PY{p}{(}\PY{n}{data\PYZus{}handler}\PY{o}{.}\PY{n}{file\PYZus{}path}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{train}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{100}\PY{p}{]}\PY{p}{:}
+                    \PY{k}{if} \PY{n}{f}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.txt}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
+                        \PY{n}{bboxes} \PY{o}{=} \PY{n}{data\PYZus{}handler}\PY{o}{.}\PY{n}{get\PYZus{}bounding\PYZus{}boxes}\PY{p}{(}\PY{n+nb}{open}\PY{p}{(}\PY{n}{data\PYZus{}handler}\PY{o}{.}\PY{n}{file\PYZus{}path}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{train}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/}\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n}{f}\PY{p}{)}\PY{p}{)}
+                        \PY{n}{img} \PY{o}{=} \PY{n}{data\PYZus{}handler}\PY{o}{.}\PY{n}{file\PYZus{}path}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{train}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/}\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n}{f}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.txt}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.jpg}\PY{l+s+s1}{\PYZsq{}}
+                        \PY{n}{label}\PY{p}{,} \PY{n}{datum} \PY{o}{=} \PY{n}{data\PYZus{}handler}\PY{o}{.}\PY{n}{build\PYZus{}training\PYZus{}array\PYZus{}single}\PY{p}{(}\PY{n}{bboxes}\PY{p}{,} \PY{n}{skio}\PY{o}{.}\PY{n}{imread}\PY{p}{(}\PY{n}{img}\PY{p}{)}\PY{p}{)}
+                        \PY{n}{labels}\PY{o}{.}\PY{n}{extend}\PY{p}{(}\PY{n}{label}\PY{p}{)}
+                        \PY{n}{data}\PY{o}{.}\PY{n}{extend}\PY{p}{(}\PY{n}{datum}\PY{p}{)}
+                \PY{k}{return} \PY{n}{data}\PY{p}{,} \PY{n}{labels}
+            
+\end{Verbatim}
+
+
+    The following code is a python wrapper for the YOLO image recognition
+system: taken from the darknet source code ../python/
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{k+kn}{from} \PY{n+nn}{ctypes} \PY{k+kn}{import} \PY{o}{*}
+        \PY{k+kn}{import} \PY{n+nn}{math}
+        \PY{k+kn}{import} \PY{n+nn}{random}
+        \PY{k+kn}{import} \PY{n+nn}{os}
+        
+        \PY{k}{def} \PY{n+nf}{sample}\PY{p}{(}\PY{n}{probs}\PY{p}{)}\PY{p}{:}
+            \PY{n}{s} \PY{o}{=} \PY{n+nb}{sum}\PY{p}{(}\PY{n}{probs}\PY{p}{)}
+            \PY{n}{probs} \PY{o}{=} \PY{p}{[}\PY{n}{a}\PY{o}{/}\PY{n}{s} \PY{k}{for} \PY{n}{a} \PY{o+ow}{in} \PY{n}{probs}\PY{p}{]}
+            \PY{n}{r} \PY{o}{=} \PY{n}{random}\PY{o}{.}\PY{n}{uniform}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+            \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{probs}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                \PY{n}{r} \PY{o}{=} \PY{n}{r} \PY{o}{\PYZhy{}} \PY{n}{probs}\PY{p}{[}\PY{n}{i}\PY{p}{]}
+                \PY{k}{if} \PY{n}{r} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{l+m+mi}{0}\PY{p}{:}
+                    \PY{k}{return} \PY{n}{i}
+            \PY{k}{return} \PY{n+nb}{len}\PY{p}{(}\PY{n}{probs}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}
+        
+        \PY{k}{def} \PY{n+nf}{c\PYZus{}array}\PY{p}{(}\PY{n}{ctype}\PY{p}{,} \PY{n}{values}\PY{p}{)}\PY{p}{:}
+            \PY{n}{arr} \PY{o}{=} \PY{p}{(}\PY{n}{ctype}\PY{o}{*}\PY{n+nb}{len}\PY{p}{(}\PY{n}{values}\PY{p}{)}\PY{p}{)}\PY{p}{(}\PY{p}{)}
+            \PY{n}{arr}\PY{p}{[}\PY{p}{:}\PY{p}{]} \PY{o}{=} \PY{n}{values}
+            \PY{k}{return} \PY{n}{arr}
+        
+        \PY{k}{class} \PY{n+nc}{BOX}\PY{p}{(}\PY{n}{Structure}\PY{p}{)}\PY{p}{:}
+            \PY{n}{\PYZus{}fields\PYZus{}} \PY{o}{=} \PY{p}{[}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{c\PYZus{}float}\PY{p}{)}\PY{p}{,}
+                        \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{y}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{c\PYZus{}float}\PY{p}{)}\PY{p}{,}
+                        \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{w}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{c\PYZus{}float}\PY{p}{)}\PY{p}{,}
+                        \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{h}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{c\PYZus{}float}\PY{p}{)}\PY{p}{]}
+        
+        \PY{k}{class} \PY{n+nc}{IMAGE}\PY{p}{(}\PY{n}{Structure}\PY{p}{)}\PY{p}{:}
+            \PY{n}{\PYZus{}fields\PYZus{}} \PY{o}{=} \PY{p}{[}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{w}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{c\PYZus{}int}\PY{p}{)}\PY{p}{,}
+                        \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{h}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{c\PYZus{}int}\PY{p}{)}\PY{p}{,}
+                        \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{c}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{c\PYZus{}int}\PY{p}{)}\PY{p}{,}
+                        \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{data}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{POINTER}\PY{p}{(}\PY{n}{c\PYZus{}float}\PY{p}{)}\PY{p}{)}\PY{p}{]}
+        
+        \PY{k}{class} \PY{n+nc}{METADATA}\PY{p}{(}\PY{n}{Structure}\PY{p}{)}\PY{p}{:}
+            \PY{n}{\PYZus{}fields\PYZus{}} \PY{o}{=} \PY{p}{[}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{classes}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{c\PYZus{}int}\PY{p}{)}\PY{p}{,}
+                        \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{names}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{POINTER}\PY{p}{(}\PY{n}{c\PYZus{}char\PYZus{}p}\PY{p}{)}\PY{p}{)}\PY{p}{]}
+        
+            
+        
+        \PY{c+c1}{\PYZsh{}lib = CDLL(\PYZdq{}/home/pjreddie/documents/darknet/libdarknet.so\PYZdq{}, RTLD\PYZus{}GLOBAL)}
+        \PY{n}{lib} \PY{o}{=} \PY{n}{CDLL}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{../libdarknet.so}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{RTLD\PYZus{}GLOBAL}\PY{p}{)}
+        \PY{n}{lib}\PY{o}{.}\PY{n}{network\PYZus{}width}\PY{o}{.}\PY{n}{argtypes} \PY{o}{=} \PY{p}{[}\PY{n}{c\PYZus{}void\PYZus{}p}\PY{p}{]}
+        \PY{n}{lib}\PY{o}{.}\PY{n}{network\PYZus{}width}\PY{o}{.}\PY{n}{restype} \PY{o}{=} \PY{n}{c\PYZus{}int}
+        \PY{n}{lib}\PY{o}{.}\PY{n}{network\PYZus{}height}\PY{o}{.}\PY{n}{argtypes} \PY{o}{=} \PY{p}{[}\PY{n}{c\PYZus{}void\PYZus{}p}\PY{p}{]}
+        \PY{n}{lib}\PY{o}{.}\PY{n}{network\PYZus{}height}\PY{o}{.}\PY{n}{restype} \PY{o}{=} \PY{n}{c\PYZus{}int}
+        
+        \PY{n}{predict} \PY{o}{=} \PY{n}{lib}\PY{o}{.}\PY{n}{network\PYZus{}predict}
+        \PY{n}{predict}\PY{o}{.}\PY{n}{argtypes} \PY{o}{=} \PY{p}{[}\PY{n}{c\PYZus{}void\PYZus{}p}\PY{p}{,} \PY{n}{POINTER}\PY{p}{(}\PY{n}{c\PYZus{}float}\PY{p}{)}\PY{p}{]}
+        \PY{n}{predict}\PY{o}{.}\PY{n}{restype} \PY{o}{=} \PY{n}{POINTER}\PY{p}{(}\PY{n}{c\PYZus{}float}\PY{p}{)}
+        
+        \PY{n}{set\PYZus{}gpu} \PY{o}{=} \PY{n}{lib}\PY{o}{.}\PY{n}{cuda\PYZus{}set\PYZus{}device}
+        \PY{n}{set\PYZus{}gpu}\PY{o}{.}\PY{n}{argtypes} \PY{o}{=} \PY{p}{[}\PY{n}{c\PYZus{}int}\PY{p}{]}
+        
+        \PY{n}{make\PYZus{}image} \PY{o}{=} \PY{n}{lib}\PY{o}{.}\PY{n}{make\PYZus{}image}
+        \PY{n}{make\PYZus{}image}\PY{o}{.}\PY{n}{argtypes} \PY{o}{=} \PY{p}{[}\PY{n}{c\PYZus{}int}\PY{p}{,} \PY{n}{c\PYZus{}int}\PY{p}{,} \PY{n}{c\PYZus{}int}\PY{p}{]}
+        \PY{n}{make\PYZus{}image}\PY{o}{.}\PY{n}{restype} \PY{o}{=} \PY{n}{IMAGE}
+        
+        \PY{n}{make\PYZus{}boxes} \PY{o}{=} \PY{n}{lib}\PY{o}{.}\PY{n}{make\PYZus{}boxes}
+        \PY{n}{make\PYZus{}boxes}\PY{o}{.}\PY{n}{argtypes} \PY{o}{=} \PY{p}{[}\PY{n}{c\PYZus{}void\PYZus{}p}\PY{p}{]}
+        \PY{n}{make\PYZus{}boxes}\PY{o}{.}\PY{n}{restype} \PY{o}{=} \PY{n}{POINTER}\PY{p}{(}\PY{n}{BOX}\PY{p}{)}
+        
+        \PY{n}{free\PYZus{}ptrs} \PY{o}{=} \PY{n}{lib}\PY{o}{.}\PY{n}{free\PYZus{}ptrs}
+        \PY{n}{free\PYZus{}ptrs}\PY{o}{.}\PY{n}{argtypes} \PY{o}{=} \PY{p}{[}\PY{n}{POINTER}\PY{p}{(}\PY{n}{c\PYZus{}void\PYZus{}p}\PY{p}{)}\PY{p}{,} \PY{n}{c\PYZus{}int}\PY{p}{]}
+        
+        \PY{n}{num\PYZus{}boxes} \PY{o}{=} \PY{n}{lib}\PY{o}{.}\PY{n}{num\PYZus{}boxes}
+        \PY{n}{num\PYZus{}boxes}\PY{o}{.}\PY{n}{argtypes} \PY{o}{=} \PY{p}{[}\PY{n}{c\PYZus{}void\PYZus{}p}\PY{p}{]}
+        \PY{n}{num\PYZus{}boxes}\PY{o}{.}\PY{n}{restype} \PY{o}{=} \PY{n}{c\PYZus{}int}
+        
+        \PY{n}{make\PYZus{}probs} \PY{o}{=} \PY{n}{lib}\PY{o}{.}\PY{n}{make\PYZus{}probs}
+        \PY{n}{make\PYZus{}probs}\PY{o}{.}\PY{n}{argtypes} \PY{o}{=} \PY{p}{[}\PY{n}{c\PYZus{}void\PYZus{}p}\PY{p}{]}
+        \PY{n}{make\PYZus{}probs}\PY{o}{.}\PY{n}{restype} \PY{o}{=} \PY{n}{POINTER}\PY{p}{(}\PY{n}{POINTER}\PY{p}{(}\PY{n}{c\PYZus{}float}\PY{p}{)}\PY{p}{)}
+        
+        \PY{n}{detect} \PY{o}{=} \PY{n}{lib}\PY{o}{.}\PY{n}{network\PYZus{}predict}
+        \PY{n}{detect}\PY{o}{.}\PY{n}{argtypes} \PY{o}{=} \PY{p}{[}\PY{n}{c\PYZus{}void\PYZus{}p}\PY{p}{,} \PY{n}{IMAGE}\PY{p}{,} \PY{n}{c\PYZus{}float}\PY{p}{,} \PY{n}{c\PYZus{}float}\PY{p}{,} \PY{n}{c\PYZus{}float}\PY{p}{,} \PY{n}{POINTER}\PY{p}{(}\PY{n}{BOX}\PY{p}{)}\PY{p}{,} \PY{n}{POINTER}\PY{p}{(}\PY{n}{POINTER}\PY{p}{(}\PY{n}{c\PYZus{}float}\PY{p}{)}\PY{p}{)}\PY{p}{]}
+        
+        \PY{n}{reset\PYZus{}rnn} \PY{o}{=} \PY{n}{lib}\PY{o}{.}\PY{n}{reset\PYZus{}rnn}
+        \PY{n}{reset\PYZus{}rnn}\PY{o}{.}\PY{n}{argtypes} \PY{o}{=} \PY{p}{[}\PY{n}{c\PYZus{}void\PYZus{}p}\PY{p}{]}
+        
+        \PY{n}{load\PYZus{}net} \PY{o}{=} \PY{n}{lib}\PY{o}{.}\PY{n}{load\PYZus{}network}
+        \PY{n}{load\PYZus{}net}\PY{o}{.}\PY{n}{argtypes} \PY{o}{=} \PY{p}{[}\PY{n}{c\PYZus{}char\PYZus{}p}\PY{p}{,} \PY{n}{c\PYZus{}char\PYZus{}p}\PY{p}{,} \PY{n}{c\PYZus{}int}\PY{p}{]}
+        \PY{n}{load\PYZus{}net}\PY{o}{.}\PY{n}{restype} \PY{o}{=} \PY{n}{c\PYZus{}void\PYZus{}p}
+        
+        \PY{n}{free\PYZus{}image} \PY{o}{=} \PY{n}{lib}\PY{o}{.}\PY{n}{free\PYZus{}image}
+        \PY{n}{free\PYZus{}image}\PY{o}{.}\PY{n}{argtypes} \PY{o}{=} \PY{p}{[}\PY{n}{IMAGE}\PY{p}{]}
+        
+        \PY{n}{letterbox\PYZus{}image} \PY{o}{=} \PY{n}{lib}\PY{o}{.}\PY{n}{letterbox\PYZus{}image}
+        \PY{n}{letterbox\PYZus{}image}\PY{o}{.}\PY{n}{argtypes} \PY{o}{=} \PY{p}{[}\PY{n}{IMAGE}\PY{p}{,} \PY{n}{c\PYZus{}int}\PY{p}{,} \PY{n}{c\PYZus{}int}\PY{p}{]}
+        \PY{n}{letterbox\PYZus{}image}\PY{o}{.}\PY{n}{restype} \PY{o}{=} \PY{n}{IMAGE}
+        
+        \PY{n}{load\PYZus{}meta} \PY{o}{=} \PY{n}{lib}\PY{o}{.}\PY{n}{get\PYZus{}metadata}
+        \PY{n}{lib}\PY{o}{.}\PY{n}{get\PYZus{}metadata}\PY{o}{.}\PY{n}{argtypes} \PY{o}{=} \PY{p}{[}\PY{n}{c\PYZus{}char\PYZus{}p}\PY{p}{]}
+        \PY{n}{lib}\PY{o}{.}\PY{n}{get\PYZus{}metadata}\PY{o}{.}\PY{n}{restype} \PY{o}{=} \PY{n}{METADATA}
+        
+        \PY{n}{load\PYZus{}image} \PY{o}{=} \PY{n}{lib}\PY{o}{.}\PY{n}{load\PYZus{}image\PYZus{}color}
+        \PY{n}{load\PYZus{}image}\PY{o}{.}\PY{n}{argtypes} \PY{o}{=} \PY{p}{[}\PY{n}{c\PYZus{}char\PYZus{}p}\PY{p}{,} \PY{n}{c\PYZus{}int}\PY{p}{,} \PY{n}{c\PYZus{}int}\PY{p}{]}
+        \PY{n}{load\PYZus{}image}\PY{o}{.}\PY{n}{restype} \PY{o}{=} \PY{n}{IMAGE}
+        
+        \PY{n}{rgbgr\PYZus{}image} \PY{o}{=} \PY{n}{lib}\PY{o}{.}\PY{n}{rgbgr\PYZus{}image}
+        \PY{n}{rgbgr\PYZus{}image}\PY{o}{.}\PY{n}{argtypes} \PY{o}{=} \PY{p}{[}\PY{n}{IMAGE}\PY{p}{]}
+        
+        \PY{n}{predict\PYZus{}image} \PY{o}{=} \PY{n}{lib}\PY{o}{.}\PY{n}{network\PYZus{}predict\PYZus{}image}
+        \PY{n}{predict\PYZus{}image}\PY{o}{.}\PY{n}{argtypes} \PY{o}{=} \PY{p}{[}\PY{n}{c\PYZus{}void\PYZus{}p}\PY{p}{,} \PY{n}{IMAGE}\PY{p}{]}
+        \PY{n}{predict\PYZus{}image}\PY{o}{.}\PY{n}{restype} \PY{o}{=} \PY{n}{POINTER}\PY{p}{(}\PY{n}{c\PYZus{}float}\PY{p}{)}
+        
+        \PY{n}{network\PYZus{}detect} \PY{o}{=} \PY{n}{lib}\PY{o}{.}\PY{n}{network\PYZus{}detect}
+        \PY{n}{network\PYZus{}detect}\PY{o}{.}\PY{n}{argtypes} \PY{o}{=} \PY{p}{[}\PY{n}{c\PYZus{}void\PYZus{}p}\PY{p}{,} \PY{n}{IMAGE}\PY{p}{,} \PY{n}{c\PYZus{}float}\PY{p}{,} \PY{n}{c\PYZus{}float}\PY{p}{,} \PY{n}{c\PYZus{}float}\PY{p}{,} \PY{n}{POINTER}\PY{p}{(}\PY{n}{BOX}\PY{p}{)}\PY{p}{,} \PY{n}{POINTER}\PY{p}{(}\PY{n}{POINTER}\PY{p}{(}\PY{n}{c\PYZus{}float}\PY{p}{)}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        ---------------------------------------------------------------------------
+
+        OSError                                   Traceback (most recent call last)
+
+        <ipython-input-6-3f4888eb93db> in <module>()
+         38 
+         39 \#lib = CDLL("/home/pjreddie/documents/darknet/libdarknet.so", RTLD\_GLOBAL)
+    ---> 40 lib = CDLL("../libdarknet.so", RTLD\_GLOBAL)
+         41 lib.network\_width.argtypes = [c\_void\_p]
+         42 lib.network\_width.restype = c\_int
+
+
+        /usr/lib/python2.7/ctypes/\_\_init\_\_.pyc in \_\_init\_\_(self, name, mode, handle, use\_errno, use\_last\_error)
+        360 
+        361         if handle is None:
+    --> 362             self.\_handle = \_dlopen(self.\_name, mode)
+        363         else:
+        364             self.\_handle = handle
+
+
+        OSError: ../libdarknet.so: cannot open shared object file: No such file or directory
+
+    \end{Verbatim}
+
+    This next section of code was written by our team to run the darknet
+system
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{l+s+sd}{Test function to try out the wrapper for simple classification.}
+        \PY{l+s+sd}{Calls the internal predict\PYZus{}image and then rates each class, returning the most likely class}
+        \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{k}{def} \PY{n+nf}{classify}\PY{p}{(}\PY{n}{net}\PY{p}{,} \PY{n}{meta}\PY{p}{,} \PY{n}{im}\PY{p}{)}\PY{p}{:}
+            \PY{n}{out} \PY{o}{=} \PY{n}{predict\PYZus{}image}\PY{p}{(}\PY{n}{net}\PY{p}{,} \PY{n}{im}\PY{p}{)}
+            \PY{n}{res} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+            \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{meta}\PY{o}{.}\PY{n}{classes}\PY{p}{)}\PY{p}{:}
+                \PY{n}{res}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{(}\PY{n}{meta}\PY{o}{.}\PY{n}{names}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{n}{out}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+            \PY{n}{res} \PY{o}{=} \PY{n+nb}{sorted}\PY{p}{(}\PY{n}{res}\PY{p}{,} \PY{n}{key}\PY{o}{=}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{o}{\PYZhy{}}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+            \PY{k}{return} \PY{n}{res}
+        
+        \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{l+s+sd}{Wrapper for yolo\PYZhy{}detection. Takes in a neural net, class info, and an image and creates bounding boxes and classification }
+        \PY{l+s+sd}{predictions for each region.}
+        \PY{l+s+sd}{Returns a list of predictions, each containing a label, a confidence rating, and the central coordinates and width, height of the region}
+        \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{k}{def} \PY{n+nf}{detect}\PY{p}{(}\PY{n}{net}\PY{p}{,} \PY{n}{meta}\PY{p}{,} \PY{n}{image}\PY{p}{,} \PY{n}{thresh}\PY{o}{=}\PY{o}{.}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{hier\PYZus{}thresh}\PY{o}{=}\PY{o}{.}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{nms}\PY{o}{=}\PY{o}{.}\PY{l+m+mi}{45}\PY{p}{)}\PY{p}{:}
+            \PY{n}{im} \PY{o}{=} \PY{n}{load\PYZus{}image}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}
+            \PY{n}{boxes} \PY{o}{=} \PY{n}{make\PYZus{}boxes}\PY{p}{(}\PY{n}{net}\PY{p}{)}
+            \PY{n}{probs} \PY{o}{=} \PY{n}{make\PYZus{}probs}\PY{p}{(}\PY{n}{net}\PY{p}{)}
+            \PY{n}{num} \PY{o}{=}   \PY{n}{num\PYZus{}boxes}\PY{p}{(}\PY{n}{net}\PY{p}{)}
+            \PY{k}{print} \PY{n}{num}
+            \PY{n}{network\PYZus{}detect}\PY{p}{(}\PY{n}{net}\PY{p}{,} \PY{n}{im}\PY{p}{,} \PY{n}{thresh}\PY{p}{,} \PY{n}{hier\PYZus{}thresh}\PY{p}{,} \PY{n}{nms}\PY{p}{,} \PY{n}{boxes}\PY{p}{,} \PY{n}{probs}\PY{p}{)}
+            \PY{n}{res} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+            \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{num}\PY{p}{)}\PY{p}{:}
+                \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{meta}\PY{o}{.}\PY{n}{classes}\PY{p}{)}\PY{p}{:}
+                    \PY{k}{if} \PY{n}{probs}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0}\PY{p}{:}
+                        \PY{n}{res}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{(}\PY{n}{meta}\PY{o}{.}\PY{n}{names}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{n}{probs}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{p}{(}\PY{n}{boxes}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{o}{.}\PY{n}{x}\PY{p}{,} \PY{n}{boxes}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{o}{.}\PY{n}{y}\PY{p}{,} \PY{n}{boxes}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{o}{.}\PY{n}{w}\PY{p}{,} \PY{n}{boxes}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{o}{.}\PY{n}{h}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+            \PY{n}{res} \PY{o}{=} \PY{n+nb}{sorted}\PY{p}{(}\PY{n}{res}\PY{p}{,} \PY{n}{key}\PY{o}{=}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{o}{\PYZhy{}}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+            \PY{n}{free\PYZus{}image}\PY{p}{(}\PY{n}{im}\PY{p}{)}
+            \PY{n}{free\PYZus{}ptrs}\PY{p}{(}\PY{n}{cast}\PY{p}{(}\PY{n}{probs}\PY{p}{,} \PY{n}{POINTER}\PY{p}{(}\PY{n}{c\PYZus{}void\PYZus{}p}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{num}\PY{p}{)}
+            \PY{k}{print} \PY{n}{res}
+            \PY{k}{print}
+            \PY{k}{return} \PY{n}{res}
+        
+            
+        \PY{k}{if} \PY{n+nv+vm}{\PYZus{}\PYZus{}name\PYZus{}\PYZus{}} \PY{o}{==} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZus{}\PYZus{}main\PYZus{}\PYZus{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}
+            \PY{n}{os}\PY{o}{.}\PY{n}{chdir}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{../darknet}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+            \PY{n}{test\PYZus{}fpath} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/Users/brendan/Documents/Neural\PYZus{}2017/Documents/NC\PYZus{}data/test/}\PY{l+s+s1}{\PYZsq{}}
+            \PY{n}{sub} \PY{o}{=} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{submission.txt}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{w+}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            \PY{n}{sub}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{image\PYZus{}cat,pixels}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            \PY{n}{net} \PY{o}{=} \PY{n}{load\PYZus{}net}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{cfg/yolo.cfg}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{yolo.weights}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)} \PY{c+c1}{\PYZsh{}use a pretrained neural net for now}
+            \PY{n}{meta} \PY{o}{=} \PY{n}{load\PYZus{}meta}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{cfg/coco.data}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+            \PY{k}{for} \PY{n}{f} \PY{o+ow}{in} \PY{n}{os}\PY{o}{.}\PY{n}{listdir}\PY{p}{(}\PY{n}{test\PYZus{}fpath}\PY{p}{)}\PY{p}{:}
+                \PY{k}{if} \PY{n}{f}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.jpg}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
+                    \PY{n}{bbox\PYZus{}dict} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+                    \PY{c+c1}{\PYZsh{}get the detections}
+                    \PY{n}{detections} \PY{o}{=} \PY{n}{detect}\PY{p}{(}\PY{n}{net}\PY{p}{,} \PY{n}{meta}\PY{p}{,} \PY{n}{test\PYZus{}fpath} \PY{o}{+} \PY{n}{f}\PY{p}{)}
+                    \PY{k}{for} \PY{n}{d} \PY{o+ow}{in} \PY{n}{detections}\PY{p}{:}
+                        \PY{c+c1}{\PYZsh{}fix up the data for the data handler}
+                        \PY{n}{dw} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n}{d}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)} \PY{o}{/}\PY{o}{/} \PY{l+m+mi}{2}
+                        \PY{n}{dh} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n}{d}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{)} \PY{o}{/}\PY{o}{/} \PY{l+m+mi}{2}
+                        \PY{n}{tl} \PY{o}{=} \PY{p}{[}\PY{n+nb}{int}\PY{p}{(}\PY{n}{d}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{dw}\PY{p}{)}\PY{p}{,} \PY{n+nb}{int}\PY{p}{(}\PY{n}{d}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{dh}\PY{p}{]}
+                        \PY{n}{br} \PY{o}{=} \PY{p}{[}\PY{n+nb}{int}\PY{p}{(}\PY{n}{d}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)} \PY{o}{+} \PY{n}{dw}\PY{p}{,} \PY{n+nb}{int}\PY{p}{(}\PY{n}{d}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)} \PY{o}{+} \PY{n}{dh}\PY{p}{]}
+                        \PY{k}{if} \PY{n}{d}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o+ow}{in} \PY{n}{bbox\PYZus{}dict}\PY{o}{.}\PY{n}{keys}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+                            \PY{n}{bbox\PYZus{}dict}\PY{p}{[}\PY{n}{d}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{[}\PY{n}{tl}\PY{p}{,} \PY{n}{br}\PY{p}{]}\PY{p}{)}
+                        \PY{k}{else}\PY{p}{:}
+                            \PY{n}{bbox\PYZus{}dict}\PY{p}{[}\PY{n}{d}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{p}{[}\PY{n}{tl}\PY{p}{,} \PY{n}{br}\PY{p}{]}\PY{p}{]}
+                    \PY{k}{for} \PY{n}{label} \PY{o+ow}{in} \PY{n}{data\PYZus{}handler}\PY{o}{.}\PY{n}{object\PYZus{}list}\PY{p}{:}
+                        \PY{k}{if} \PY{n}{label} \PY{o+ow}{not} \PY{o+ow}{in} \PY{n}{bbox\PYZus{}dict}\PY{o}{.}\PY{n}{keys}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+                            \PY{n}{bbox\PYZus{}dict}\PY{p}{[}\PY{n}{label}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+                    \PY{n}{line} \PY{o}{=} \PY{n}{data\PYZus{}handler}\PY{o}{.}\PY{n}{generate\PYZus{}output\PYZus{}file}\PY{p}{(}\PY{n}{bbox\PYZus{}dict}\PY{p}{,} \PY{n}{f}\PY{p}{)}
+                    \PY{k}{print} \PY{n}{line}
+                    \PY{n}{sub}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{n}{line}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        ---------------------------------------------------------------------------
+
+        OSError                                   Traceback (most recent call last)
+
+        <ipython-input-7-e5afd3f15531> in <module>()
+         28 
+         29 if \_\_name\_\_ == "\_\_main\_\_":
+    ---> 30     os.chdir("../darknet")
+         31     test\_fpath = '/Users/brendan/Documents/Neural\_2017/Documents/NC\_data/test/'
+         32     sub = open('submission.txt', 'w+')
+
+
+        OSError: [Errno 2] No such file or directory: '../darknet'
+
+    \end{Verbatim}
+
+    \section{Experiments}\label{experiments}
+
+Because of the continuing struggle with implementation, there were few
+opportunities for rigorous experimentation during this project. Despite
+this, we were able to tweak with a few parameters throughout the
+project. When using SelectiveSearch, we were looking for parameter
+values which would produce a smaller number of boxes while still keeping
+the good ones with high probability. The algorithm took the parameters
+scale, sigma, and minsize, where scale determined the tendency for
+larger regions, sigma the bias towards grouping nearby objects of
+similar color together, and minsize the minimum length of the flattened
+pixel array. We ran some tests on random small groups of images from the
+test set, and found a scale of 400, a sigma of 0.8, and a minsize of
+1000 to produce promising results, but a minsize of 400 largely kept the
+good large region proposals, while also producing many smaller regions
+to increase likelyhood of finding smaller objects.
+
+We also had the opportunity to experiment with training times for the
+neural network used in the yolo algorithm, though never test the
+performance resulting from this training due to time and memory
+constraints. As mentioned above, we chose to use the tiny-yolo network
+as a basis, which uses about 5 fewer convolutional layers than other
+yolo configurations such as standard yolo or yolo-voc. Running on CPU,
+tiny-yolo ran an iteration in about 5 minutes, while the extra
+convolutional layers took around 20 minutes. In all examples, a batch
+size of 64 was used.
+
+    \section{Conclusions}\label{conclusions}
+
+One of our first, but most important findings, was the R-CNN is unusably
+slow for anything to akin to real time applications when run from a CPU.
+We had a number of difficulties testing and implement GPU
+implementations, mostly due to a lack of access to machines with GPUs
+(The machines in the lab were fairly uncooprative: Keras, TensorFlow,
+and YOLO\_v2 could not be made to run due to memory issues, and none of
+our team had their own sutiable hardware).
+
+YOLO\_v2 overcomes this problem, and runs in an acceptable time on a
+CPU, however the output produced from the vanilla YOLO system is
+incompatible with the desired output format for the competition.
+
+Our code was unable to sucessfully produce a result to the competition.
+despite producing seemingly close to correct values. The kaggle
+competition rejected the submission with the error: "Overlapping values
+detected: Submitted values must be unique". Because of this our best
+official performance was "NULL", despite attempts to forcibly rectify
+the output labels and remove collisions. Our belief is that this error
+was due to the fact that our modified version of YOLO allows overlapping
+bounding boxes, (i.e. the pottedplant is on the diningtable and
+therefore the pottedplant pixels will be a subset of the diningtable
+pixels) but the required format of the output data does not appear to
+allow this.
+
+Overall, this project can be said to give a useful insight into existing
+methods for regional image recognition, however it made little progress
+towards optimizing a new system. This was in part due to the time
+constraints as implementing and retraining a new style of network can
+take over a day in some cases and there was a very limited amount of
+time to run experiments of this length once our team was getting close
+to functioning implementations.
+
+    \section{Description of
+Collaboration}\label{description-of-collaboration}
+
+\subsubsection*{Brendan Case}\label{brendan-case}
+
+\begin{itemize}
+\item
+  Wrote the python wrapper for YOLO.
+\item
+  Set up training YOLO on data with Vasileios.
+\item
+  Investigated RCNN and tested working with region proposal systems.
+\end{itemize}
+
+\subsubsection*{Guy Coop}\label{guy-coop}
+
+\begin{itemize}
+\item
+  Produced data handler python class used by multiple systems to
+  reformat the training data into the required input format for the
+  neural network. And reformat the output from the network back into a
+  format that matches the input.
+\item
+  Lead the writing of the report, and collated it into a Jupyter
+  Notebook.
+\end{itemize}
+
+\subsubsection*{Vasileios Mizaridis}\label{vasileios-mizaridis}
+
+\begin{itemize}
+\item
+  performed research into R-CNN using TensorFlow and Keras
+\item
+  Assisted writing a python Wrapper for YOLO.
+\item
+  Set up training and testing YOLO with our competition data.
+\end{itemize}
+
+\subsubsection*{Priyanka Mohata}\label{priyanka-mohata}
+
+\begin{itemize}
+\item
+  Tried to implement multiple versions different version of YOLO using
+  pre existing neural networks. This proved to be very difficult since
+  there were many issues during this due to many of the codes not run
+  correctly on a windows machine. I did try it on the Linux machine is
+  the UG lab but were unsuccessful due to limited disk storage quota.
+\item
+  Ran darknet(YOLO) on a virtual linux machine.Initially ran it with its
+  pretrained weights and tested it on a few images. After determining
+  that YOLO was indeed a good technique, tried to modify it to fit it
+  into our dataset and file structure.
+\item
+  Contributed some sections of the report
+\end{itemize}
+
+\subsubsection*{Liangye Yu}\label{liangye-yu}
+
+\begin{itemize}
+\tightlist
+\item
+  Found and collected information about the You Only Look Once (YOLO)
+  System
+\item
+  Analysed and tested a pre-trained network
+\item
+  Analysed the results and attempted to retrain the network for our own
+  data
+\end{itemize}
+
+    \section{References}\label{references}
+
+{[}GDDM14{]} Ross Girshick, Jeff Donahue, Trevor Darrell, and Jitendra
+Malik. R-cnn for object detection. 2014.\\
+
+{[}Gir15{]} Ross Girshick. Fast r-cnn. arXiv:1504.08083, 2015.\\
+
+{[}Goo17{]} Google. Tensorflow 1.0, 2017.\\
+
+{[}RDGF15{]} Joseph Redmon, Santosh Divvala, Ross Girshick, and Ali
+Farhadi. You only look once: Unified, real-time object detection.
+arXiv:1506.02640, 2015.\\
+
+{[}RF16{]} Joseph Redmon and Ali Farhadi. Yolo9000: Better, faster,
+stronger. arXiv preprint arXiv:1612.08242, 2016.\\
+
+{[}RHGS15{]} Shaoqing Ren, Kaiming He, Ross Girshick, and Jian Sun.
+Faster r-cnn: Towards real-time object detection with region proposal
+networks. arXiv:1506.01497, 2015.\\
+
+{[}sidt17{]} scikit-image development team. skimage 0.13.1, 2017.
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
