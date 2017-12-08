@@ -1,14 +1,37 @@
-\begin{thebibliography}{RHGS15}
+\begin{thebibliography}{GDDM14}
+
+\bibitem[GDDM14]{rcnn}
+Ross Girshick, Jeff Donahue, Trevor Darrell, and Jitendra Malik.
+\newblock R-cnn for object detection.
+\newblock 2014.
 
 \bibitem[Gir15]{fast_rcnn}
 Ross Girshick.
 \newblock Fast r-cnn.
-\newblock 2015.
+\newblock {\em arXiv:1504.08083}, 2015.
+
+\bibitem[Goo17]{tensorflow}
+Google.
+\newblock Tensorflow 1.0, 2017.
+
+\bibitem[RDGF15]{yolo_v1}
+Joseph Redmon, Santosh Divvala, Ross Girshick, and Ali Farhadi.
+\newblock You only look once: Unified, real-time object detection.
+\newblock {\em arXiv:1506.02640}, 2015.
+
+\bibitem[RF16]{yolo_v2}
+Joseph Redmon and Ali Farhadi.
+\newblock Yolo9000: Better, faster, stronger.
+\newblock {\em arXiv preprint arXiv:1612.08242}, 2016.
 
 \bibitem[RHGS15]{faster_rcnn}
 Shaoqing Ren, Kaiming He, Ross Girshick, and Jian Sun.
 \newblock Faster r-cnn: Towards real-time object detection with region proposal
   networks.
-\newblock 2015.
+\newblock {\em arXiv:1506.01497}, 2015.
+
+\bibitem[sidt17]{skimage}
+scikit-image~development team.
+\newblock skimage 0.13.1, 2017.
 
 \end{thebibliography}
