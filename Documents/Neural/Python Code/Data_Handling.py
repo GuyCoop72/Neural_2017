@@ -189,5 +189,19 @@ class data_handler:
 
 
 
-print(data_handler.get_yolo_text_files("/home/guy/Documents/Neural/Data/train/2007_000042.txt", "/home/guy/Documents/Neural/Data/temp.txt"))
+    @staticmethod
+    def batch_covert_to_yolo(input_dir, output_dir):
+        for file in os.listdir(input_dir):
+            data_handler.get_yolo_text_files(input_dir + file, output_dir + file)
+        return
+
+
+input_dir = "/home/Neural/" #WRITE YOUR INPUT DIR HERE
+output_dir = "/home/Neural/YOLO/" #WRITE YOUR OUTPUT DIR HERE
+
+txt_files = [file for file in os.listdir(input_dir) if file.endswith(".txt")]
+
+for file in txt_files:
+    data_handler.get_yolo_text_files(input_dir + file, output_dir + file)
+
 

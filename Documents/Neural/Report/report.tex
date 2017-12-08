@@ -49,7 +49,7 @@ Our aims for this project are as follows:
 For this task our Initial instict was to attempt to solve it with a simple feedforward neural network. And whilst this would have been adequate for a simple classification task, we determined it would not provide a good solution to this region bounded classification task. From there we exaimned other possible methods of solving the task. The first sub-method we investigated was using Selective Search to identify regions of interest inside the image. We then expanded this to determine other pre-established algorithms that make use of selective search and how they compare to other similar algorithms.
 
 \subsection{Selective Search}
-Selective Search is an algorithm used for regional image searching. It works by performing image processing to segment an image by multiple factors such as: Colour, Texture, an Brightness, in order to try and separate multiple object inside an image. once these sections have been separated. rectangular bounding boxes can be formed around the objects so that they can be passed to an image recogniser network.
+Selective Search is an algorithm used for regional image searching....
 	
 \subsection{Regional Convolutional Neural Networks (RCNNs)}
 	Given the regional nature of this task, The first option that should be analyzed is "Regional Convultional Neural Networks" and their successors. This strategy of focusing  There are three implementations of this algorithm that will be examined:
@@ -81,7 +81,8 @@ A first attempt resembled the original R-CNN algorithm outlined in (CITE RCNN). 
 
 These regions, along with the regions provided in the training text files, were converted to $120\times 120$ arrays of rgb tuples using Skimage (SciKit Image processing library \cite{skimage}) and numpy reshaping tools, which could then be used to train the CNN.
 
-In the interest of time and sanity, this implementation was largely discarded in favor of the more ready-to-use implementation of YOLO from Darknet. In order to comply with the requirement to implement code in Python, we made use of a Python wrapper provided by Darknet. To use this, we wrote a script which loaded a trained network with provided weights and made predictions for each image in the test set, appending the predictions in the proper format to a \texttt{submission.txt} file, used to submit our predictions.
+In the interest of time and sanity, this implementation was largely discarded in favor of the more ready-to-use implementation of YOLO from Darknet. In order to comply with the requirement to implement code in Python, we made use of a Python wrapper provided by Darknet. To use this, we wrote a script which loaded a trained network with provided weights and made predictions for each image in the test set, appending the predictions in the proper format to a \texttt{submission.txt} file, used to submit our predictions. We also adjusted one of the provided networks, 'tiny-yolo,' and trained our own weights using the training image and labels provided; however, given the limited time these weights never reached the point of having an average loss below 100.
+
 --YOLO\_v1\cite{yolo_v1}\\
 --using YOLO\cite{yolo_v2}\\
 --Darknet\\
