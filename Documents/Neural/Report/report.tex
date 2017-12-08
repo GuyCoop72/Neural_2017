@@ -83,11 +83,11 @@ These regions, along with the regions provided in the training text files, were 
 
 In the interest of time and sanity, this implementation was largely discarded in favor of the more ready-to-use implementation of YOLO from Darknet. In order to comply with the requirement to implement code in Python, we made use of a Python wrapper provided by Darknet. To use this, we wrote a script which loaded a trained network with provided weights and made predictions for each image in the test set, appending the predictions in the proper format to a \texttt{submission.txt} file, used to submit our predictions. We also adjusted one of the provided networks, 'tiny-yolo,' and trained our own weights using the training image and labels provided; however, given the limited time these weights never reached the point of having an average loss below 100.
 
---YOLO\_v1\cite{yolo_v1}\\
---using YOLO\cite{yolo_v2}\\
---Darknet\\
-
 \section{Experiments}
+
+Because of the continuing struggle with implementation, there were few opportunities for rigorous experimentation during this project. Despite this, we were able to tweak with a few parameters throughout the project. When using SelectiveSearch, we were looking for parameter values which would produce a smaller number of boxes while still keeping the good ones with high probability. The algorithm took the parameters scale, sigma, and minsize, where scale determined the tendency for larger regions, sigma the bias towards grouping nearby objects of similar color together, and minsize the minimum length of the flattened pixel array. We ran some tests on random small groups of images from the test set, and found a scale of 400, a sigma of 0.8, and a minsize of 1000 to produce promising results, but a minsize of 400 largely kept the good large region proposals, while also producing many smaller regions to increase likelyhood of finding smaller objects. 
+
+We also had the opportunity to experiment with training times for the neural network used in the yolo algorithm, though never test the performance resulting from this training due to time and memory constraints. As mentioned above, we chose to use the tiny-yolo network as a basis, which uses about 5 fewer convolutional layers than other yolo configurations such as standard yolo or yolo-voc. Running on CPU, tiny-yolo ran an iteration in about 5 minutes, while the extra convolutional layers took around 20 minutes. In all examples, a batch size of 64 was used.
 
 \section{Conclusion}
 
